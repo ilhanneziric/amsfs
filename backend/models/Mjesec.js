@@ -5,6 +5,10 @@ const mjesecSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    godina: {
+        type: Number,
+        required: true
+    },
     pocetniDan: {
         type: Number,
         required: true
