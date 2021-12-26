@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 //screens
@@ -9,13 +9,14 @@ import KalendarScreen from './screens/KalendarScreen';
 import TerminScreen from './screens/TerminScreen';
 import PotvrdaScreen from './screens/PotvrdaScreen';
 
+//components
+import Header from './components/Header';
+
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
-        hello amsfs
-      </div>
+      <Header/>
       <main>
         <Routes>
           <Route path='/' element = {<SpolScreen/>}/>

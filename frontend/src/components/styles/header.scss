@@ -1,0 +1,12 @@
+// @use './colors.scss';
+@import './colors';
+
+.header{
+    background-color: $darkBlue;
+    color: $lightBlue;
+}
+
+.header__logo{
+    font-size: 4rem;
+    padding: 30px;
+}
