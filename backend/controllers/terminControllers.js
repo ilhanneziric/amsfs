@@ -35,6 +35,7 @@ const addTermin = async (req,res) => {
         ime: req.body.ime,
         telefon: req.body.telefon,
         email: req.body.email,
+        napomena: req.body.napomena,
         isPrihvacen: req.body.isPrihvacen,
         dan: req.body.dan,
         tretman: req.body.tretman
@@ -64,6 +65,7 @@ const updateTermin =  async (req,res) => {
             ime: req.body.ime,
             telefon: req.body.telefon,
             email: req.body.email,
+            napomena: req.body.napomena,
             isPrihvacen: req.body.isPrihvacen,
             dan: req.body.dan,
             tretman: req.body.tretman

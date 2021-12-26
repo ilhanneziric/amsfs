@@ -21,6 +21,10 @@ const terminSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    napomena: {
+        type: String
+    },
+    
     isPrihvacen: {
         type: String,
         required: true
