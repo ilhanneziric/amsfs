@@ -1,11 +1,20 @@
 import { Link } from "react-router-dom"
 
+
+import Kartica from '../components/Kartica';
+import muskoIcon from '../icons/musIcon.png';
+import zenskoIcon from '../icons/zenIcon.png';
+
 const SpolScreen = () => {
     return (
-        <div>
-            {/* naslov koji ce se non stop provlacit(npr nova narudba) style: lightblue slova sa sivim bottom borderom ili obrnuto*/}
-            {/* pogledati kod merlinke  */}
-            <button><Link to='/kategorija'>dalje</Link></button>
+        <div className="body">
+            <h1 className="naslov">Rezervišite termin za...<hr className="crta" /></h1>
+            <div className="kartice">
+                <Link to='/kategorija/musko'><Kartica imageURL={muskoIcon} naslov="MUŠKO"/></Link>
+                <Link to='/kategorija/zensko'><Kartica imageURL={zenskoIcon} naslov="ŽENSKO"/></Link>
+            </div>
+            
+            {/*  */}
         </div>
     )
 }

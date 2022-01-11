@@ -1,0 +1,35 @@
+@import './colors';
+
+body{
+    margin: 0;
+    background-color: #ffffff;//$grey;
+}
+
+a{
+    text-decoration: none;
+}
+
+.kartice{
+    display: flex;
+    justify-content: space-around;
+}
+
+.naslov{
+    margin: 0;
+    text-align: center;
+    padding: 2rem;
+    font-size: 3rem;
+    color: $lightDarkBlue;
+}
+
+.crta{
+    margin: 0;
+    margin-bottom: 2rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: 4px;
+    background-color: $lightBlue;
+    border: 0;
+}

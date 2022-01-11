@@ -8,6 +8,7 @@ import TretmanScreen from './screens/TretmanScreen';
 import KalendarScreen from './screens/KalendarScreen';
 import TerminScreen from './screens/TerminScreen';
 import PotvrdaScreen from './screens/PotvrdaScreen';
+import './components/styles/sve.scss'
 
 //components
 import Header from './components/Header';
@@ -20,7 +21,7 @@ function App() {
       <main>
         <Routes>
           <Route path='/' element = {<SpolScreen/>}/>
-          <Route path='/kategorija' element = {<KategorijaScreen/>}/>
+          <Route path='/kategorija/:id' element = {<KategorijaScreen/>}/>
           <Route path='/tretman' element = {<TretmanScreen/>}/>
           <Route path='/kalendar' element = {<KalendarScreen/>}/>
           <Route path='/termin' element = {<TerminScreen/>}/>
