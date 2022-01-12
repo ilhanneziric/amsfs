@@ -10,11 +10,9 @@ const SpolScreen = () => {
         <div className="body">
             <h1 className="naslov">Rezervišite termin za...<hr className="crta" /></h1>
             <div className="kartice">
-                <Link to='/kategorija/musko'><Kartica imageURL={muskoIcon} naslov="MUŠKO"/></Link>
                 <Link to='/kategorija/zensko'><Kartica imageURL={zenskoIcon} naslov="ŽENSKO"/></Link>
+                <Link to='/kategorija/musko'><Kartica imageURL={muskoIcon} naslov="MUŠKO"/></Link>
             </div>
-            
-            {/*  */}
         </div>
     )
 }

@@ -1,13 +1,35 @@
 import { Link, useParams } from "react-router-dom"
 
+
+import Kartica from '../components/Kartica';
+import kratkaM from '../icons/muskeFrizure/kratkaM.png';
+import srednjaM from '../icons/muskeFrizure/srednjaM.png';
+import dugaM from '../icons/muskeFrizure/dugaM.png';
+import kratkaZ from '../icons/zenskeFrizure/kratkaZ.png';
+import srednjaZ from '../icons/zenskeFrizure/srednjaZ.png';
+import dugaZ from '../icons/zenskeFrizure/dugaZ.png';
+
+
 const KategorijaScreen = () => {
     const params = useParams();
+
+    // const kategorija: {params.id}
     return (
-        <div>
-            kategorija: {params.id}
-            <button><Link to='/tretman'>dalje</Link></button>
-            <button><Link to='/'>nazad</Link></button>
+        <div className="body">
+        <h1 className="naslov">Odaberite veličinu vaše kose<hr className="crta" /></h1>
+        <div className="kartice">
+            {params.id === "musko" &&  <Link to='/tretman/km'><Kartica imageURL={kratkaM} naslov="KRATKA KOSA"/></Link>}
+            {params.id === "musko" &&  <Link to='/tretman/sm'><Kartica imageURL={srednjaM} naslov="SREDNJA KOSA"/></Link>}
+            {params.id === "musko" &&  <Link to='/tretman/dm'><Kartica imageURL={dugaM} naslov="DUGA KOSA"/></Link>}
+
+            {params.id === "zensko" &&  <Link to='/tretman/kz'><Kartica imageURL={kratkaZ} naslov="KRATKA KOSA"/></Link>}
+            {params.id === "zensko" &&  <Link to='/tretman/sz'><Kartica imageURL={srednjaZ} naslov="SREDNJA KOSA"/></Link>}
+            {params.id === "zensko" &&  <Link to='/tretman/dz'><Kartica imageURL={dugaZ} naslov="DUGA KOSA"/></Link>}   
+
+
+            {/* <button><Link to='/'>nazad</Link></button> */}
         </div>
+    </div>
     )
 }
 

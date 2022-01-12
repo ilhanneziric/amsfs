@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 const TretmanScreen = () => {
+    const params = useParams();
+    // tretman {params.id}
     return (
         <div>
-            tretman
             <button><Link to='/kalendar'>dalje</Link></button>
             <button><Link to='/kategorija'>nazad</Link></button>
         </div>

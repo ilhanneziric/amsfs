@@ -19,14 +19,14 @@ function App() {
     <BrowserRouter>
       <Header/>
       <main>
-        <Routes>
-          <Route path='/' element = {<SpolScreen/>}/>
-          <Route path='/kategorija/:id' element = {<KategorijaScreen/>}/>
-          <Route path='/tretman' element = {<TretmanScreen/>}/>
-          <Route path='/kalendar' element = {<KalendarScreen/>}/>
-          <Route path='/termin' element = {<TerminScreen/>}/>
-          <Route path='/potvrda' element = {<PotvrdaScreen/>}/>
-        </Routes>
+          <Routes>
+            <Route path='/' element = {<SpolScreen/>}/>
+            <Route path='/kategorija/:id' element = {<KategorijaScreen/>}/>
+            <Route path='/tretman/:id' element = {<TretmanScreen/>}/>
+            <Route path='/kalendar' element = {<KalendarScreen/>}/>
+            <Route path='/termin' element = {<TerminScreen/>}/>
+            <Route path='/potvrda' element = {<PotvrdaScreen/>}/>
+          </Routes>
       </main>
     </BrowserRouter>
   );

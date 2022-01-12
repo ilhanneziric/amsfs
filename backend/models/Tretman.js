@@ -17,10 +17,14 @@ const tretmanSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    kategorija: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Kategorija"
+     kategorija: {
+        type: String,
+        required: true
     }
+    // kategorija: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "Kategorija"
+    // }
 }, {timestamps: true});
 
 module.exports = mongoose.model('Tretman', tretmanSchema);
