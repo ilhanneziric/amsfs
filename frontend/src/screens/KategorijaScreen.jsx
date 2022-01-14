@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom"
-
+import NatragBtn from "../components/NatragBtn";
 
 import Kartica from '../components/Kartica';
 import kratkaM from '../icons/muskeFrizure/kratkaM.png';
@@ -13,9 +13,9 @@ import dugaZ from '../icons/zenskeFrizure/dugaZ.png';
 const KategorijaScreen = () => {
     const params = useParams();
 
-    // const kategorija: {params.id}
     return (
         <div className="body">
+            <Link to='/'><NatragBtn/></Link>
         <h1 className="naslov">Odaberite veličinu vaše kose<hr className="crta" /></h1>
         <div className="kartice">
             {params.id === "musko" &&  <Link to='/tretman/km'><Kartica imageURL={kratkaM} naslov="KRATKA KOSA"/></Link>}
@@ -25,9 +25,6 @@ const KategorijaScreen = () => {
             {params.id === "zensko" &&  <Link to='/tretman/kz'><Kartica imageURL={kratkaZ} naslov="KRATKA KOSA"/></Link>}
             {params.id === "zensko" &&  <Link to='/tretman/sz'><Kartica imageURL={srednjaZ} naslov="SREDNJA KOSA"/></Link>}
             {params.id === "zensko" &&  <Link to='/tretman/dz'><Kartica imageURL={dugaZ} naslov="DUGA KOSA"/></Link>}   
-
-
-            {/* <button><Link to='/'>nazad</Link></button> */}
         </div>
     </div>
     )

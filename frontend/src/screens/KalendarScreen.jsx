@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 const KalendarScreen = () => {
+    const params = useParams();
     return (
         <div>
-            kalendar
+            kalendar {params.id}
             <button><Link to='/termin'>dalje</Link></button>
             <button><Link to='/tretman'>nazad</Link></button>
         </div>

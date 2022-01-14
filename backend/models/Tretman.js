@@ -7,7 +7,7 @@ const tretmanSchema = mongoose.Schema({
     },
     opis: {
         type: String,
-        required: true
+        required: false
     },
     cijena: {
         type: Number,
