@@ -15,9 +15,9 @@ const KategorijaScreen = () => {
 
     return (
         <div className="body">
-        <div className="navigacija">
+        <div className="naslov">
             <Link to='/'><NatragBtn className="ulijevo"/></Link>
-            <h1 className="naslov">Odaberite veličinu vaše kose<hr className="crta" /></h1>
+            <h1>Odaberite veličinu vaše kose<hr className="crta" /></h1>
         </div>
         <div className="kartice">
             {params.id === "musko" &&  <Link to='/tretman/km'><Kartica imageURL={kratkaM} naslov="KRATKA KOSA"/></Link>}

@@ -22,12 +22,18 @@ const TretmanScreen = () => {
     };
     return (
         <div>
-            {
-                params.id === "kz" || params.id === "sz" || params.id === "dz" ? 
-                <Link to='/kategorija/zensko'><NatragBtn/></Link>: 
-                <Link to='/kategorija/musko'><NatragBtn/></Link>
-            }
-            <h1 className="naslov">Odaberite tretman<hr className="crta" /></h1>
+            
+
+
+            <div className="naslov">
+                {
+                    params.id === "kz" || params.id === "sz" || params.id === "dz" ? 
+                    <Link to='/kategorija/zensko'><NatragBtn/></Link>: 
+                    <Link to='/kategorija/musko'><NatragBtn/></Link>
+                }
+                <h1 className="">Odaberite tretman<hr className="crta" /></h1>
+            </div>
+
 
 
             {tretmani.map((tretman) => (
