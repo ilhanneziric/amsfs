@@ -14,8 +14,12 @@ const TretmanScreen = () => {
         setTretmani(result.data);
     }, []);
 
-    console.log(tretmani);
-    
+    // console.log(tretmani);
+    const tDatum = new Date();
+    const bla = {
+        broj: tDatum.getMonth() + 1,
+        godina: tDatum.getFullYear()
+    };
     return (
         <div>
             {
@@ -23,15 +27,14 @@ const TretmanScreen = () => {
                 <Link to='/kategorija/zensko'><NatragBtn/></Link>: 
                 <Link to='/kategorija/musko'><NatragBtn/></Link>
             }
-        <h1 className="naslov">Odaberite tretman<hr className="crta" /></h1>
+            <h1 className="naslov">Odaberite tretman<hr className="crta" /></h1>
 
 
             {tretmani.map((tretman) => (
-                <Link to={'/kalendar/' + tretman._id} key={tretman._id}>
+                <Link to={`/kalendar/${tretman._id}/${bla.broj}/${bla.godina}`} key={tretman._id}>
                     <TretmanKartica key={tretman._id} naslov={tretman.naslov} opis={tretman.opis === '' ? '' : tretman.opis} trajanje={tretman.trajanje} cijena={tretman.cijena}/>
                 </Link>
-            )
-            )}
+            ))}
 
             {/* <button><Link to='/kalendar'>dalje</Link></button>
             <button><Link to='/kategorija'>nazad</Link></button> */}

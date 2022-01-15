@@ -18,6 +18,15 @@ const getOneMjesec = async (req,res) => {
     }
 };
 
+const getOneMjesecWithBrojAndGodina = async (req,res) => {
+    try {
+        let mjesec = await Mjesec.findOne({broj: req.params.broj, godina: req.params.godina});
+        res.json(mjesec == null ? "nema" : mjesec);
+    } catch (err) {
+        res.json({message: err.message});
+    }
+};
+
 const addMjesec = async (req,res) => {
     const noviMjesec = new Mjesec({
         broj: req.body.broj,
@@ -57,6 +66,7 @@ const updateMjesec = async (req,res) => {
 module.exports = {
     getAllMjeseci,
     getOneMjesec,
+    getOneMjesecWithBrojAndGodina,
     addMjesec,
     deleteMjesec,
     updateMjesec

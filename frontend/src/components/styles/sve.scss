@@ -5,6 +5,12 @@ body{
     background-color: #ffffff;//$grey;
 }
 
+.bodyKalendar{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 30rem 0 30rem
+}
+
 a{
     text-decoration: none;
 }
@@ -18,8 +24,9 @@ a{
     margin: 0;
     text-align: center;
     padding: 2rem;
-    font-size: 3rem;
+    font-size: 2rem;
     color: $lightDarkBlue;
+    justify-self: center;
 }
 
 .crta{

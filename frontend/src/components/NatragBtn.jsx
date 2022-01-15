@@ -5,7 +5,7 @@ import './styles/natragBtn.scss';
 const NatragBtn = () => {
     return (
         <div className="bodyBtn">
-            <FaArrowLeft className="strelica"/>NATRAG
+            <FaArrowLeft className="fastrelica"/>NAZAD
         </div>
     )
 }

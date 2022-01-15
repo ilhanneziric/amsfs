@@ -23,7 +23,7 @@ function App() {
             <Route path='/' element = {<SpolScreen/>}/>
             <Route path='/kategorija/:id' element = {<KategorijaScreen/>}/>
             <Route path='/tretman/:id' element = {<TretmanScreen/>}/>
-            <Route path='/kalendar/:id' element = {<KalendarScreen/>}/>
+            <Route path='/kalendar/:id/:broj/:godina' element = {<KalendarScreen/>}/>
             <Route path='/termin' element = {<TerminScreen/>}/>
             <Route path='/potvrda' element = {<PotvrdaScreen/>}/>
           </Routes>

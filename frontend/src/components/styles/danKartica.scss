@@ -1,0 +1,54 @@
+@import './colors';
+
+.bodyDanUnDisabled{
+    margin: 2px;
+    width: 67.8px;
+    height: 67.8px;
+    text-align: center;
+    font-size: 1.5rem;
+    border: 4px solid $lightBlue;
+    color: $lightDarkBlue;
+    border-radius: 15%;
+    transition: transform 0.2s; //, box-shadow 0.2s
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+
+.bodyDanDisabled{
+    margin: 2px;
+    width: 67.8px;
+    height: 67.8px;
+    text-align: center;
+    font-size: 1.5rem;
+    border: 4px solid #b8cecc;
+    color: $grey;
+    border-radius: 15%;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+// .undisabled{
+//     border: 4px solid $lightBlue;
+//     color: $lightDarkBlue;
+// }
+
+// .disabled{
+//     border: 4px solid $lightDarkBlue;
+//     color: $lightDarkBlue;
+// }
+
+.bodyDanUnDisabled:hover{
+    background-color: $lightBlue;
+    transform: scale(1.1);
+
+    // box-shadow: 0px 0px 20px -7px rgba(0,0,0,0.86);
+    // -webkit-box-shadow: 0px 0px 20px -7px rgba(0,0,0,0.86);
+    // -moz-box-shadow: 0px 0px 20px -7px rgba(0,0,0,0.86);
+}
+
+.bodyDanDisabled:hover{
+    cursor: not-allowed;
+}
