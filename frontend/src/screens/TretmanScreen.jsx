@@ -21,7 +21,7 @@ const TretmanScreen = () => {
         godina: tDatum.getFullYear()
     };
     return (
-        <div>
+        <div className="body">
             
 
 
@@ -37,7 +37,7 @@ const TretmanScreen = () => {
 
 
             {tretmani.map((tretman) => (
-                <Link to={`/kalendar/${tretman._id}/${bla.broj}/${bla.godina}`} key={tretman._id}>
+                <Link to={`/kalendar/${tretman._id}`} key={tretman._id}>
                     <TretmanKartica key={tretman._id} naslov={tretman.naslov} opis={tretman.opis === '' ? '' : tretman.opis} trajanje={tretman.trajanje} cijena={tretman.cijena}/>
                 </Link>
             ))}

@@ -18,13 +18,11 @@ const terminSchema = mongoose.Schema({
         required: true
     },
     email: {
-        type: String,
-        required: true
+        type: String
     },
     napomena: {
         type: String
     },
-    
     isPrihvacen: {
         type: String,
         required: true

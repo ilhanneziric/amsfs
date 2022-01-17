@@ -6,7 +6,7 @@ import axios from "axios";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
 
-const getMonthName = require('../funkcije');
+const {getMonthName} = require('../funkcije');
 
 const MjesecSwitcher = ({lijevo, desno, mjesec, setujLijevo, setujDesno}) => {
     

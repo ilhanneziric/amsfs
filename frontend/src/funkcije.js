@@ -16,4 +16,8 @@ function getMonthName(month){
     }
 }
 
-module.exports = getMonthName;
+function poredjenjeTermina(obj1, obj2) {
+    return (obj1.sat === obj2.sat && obj1.minuta === obj2.minuta);
+}
+
+module.exports = {getMonthName, poredjenjeTermina};

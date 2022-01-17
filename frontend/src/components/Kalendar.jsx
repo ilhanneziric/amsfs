@@ -6,9 +6,9 @@ import MjesecSwitcher from "./MjesecSwitcher";
 
 
 const Kalendar = ( {prosli, sadasnji, buduci}) => {
+    const params = useParams();
     // const [dani,setDani] = useState([]);
     // const [mjesec, setMjesec] = useState({});
-    // const params = useParams();
 
     // const [prosliMjesec,setProsliMjesec] = useState([{broj:0, godina:0}]);
 
@@ -59,7 +59,7 @@ const Kalendar = ( {prosli, sadasnji, buduci}) => {
                     prosli.reverse().map((d,index)=>(<DanKartica key={index} broj={d.broj} disabled={d.disabled}/>))
                 }
                 {
-                    sadasnji.map((d) => (<DanKartica key={d._id} broj={d.broj} disabled={d.disabled}/>))
+                    sadasnji.map((d) => (<Link to={`/termin/${d._id}/${params.id}`} key={d._id}><DanKartica broj={d.broj} disabled={d.disabled}/></Link>))
                 }
                 {
                     buduci.map((d, index)=>(<DanKartica key={index + 10000} broj={d.broj} disabled={d.disabled}/>))
