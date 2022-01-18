@@ -56,13 +56,17 @@ const Kalendar = ( {prosli, sadasnji, buduci}) => {
             {/* <MjesecSwitcher mjesec={sadasnji} /> */}
             <div className="bodyKalendar">
                 {
-                    prosli.reverse().map((d,index)=>(<DanKartica key={index} broj={d.broj} disabled={d.disabled}/>))
+                    prosli.reverse().map((d,index)=>(<DanKartica key={index} broj={d.broj} disabled={d.disabled} neaktuelni="true"/>))
                 }
                 {
-                    sadasnji.map((d) => (<Link to={`/termin/${d._id}/${params.id}`} key={d._id}><DanKartica broj={d.broj} disabled={d.disabled}/></Link>))
+                    sadasnji.map((d) => (
+                        d.disabled === "true" ? 
+                        <DanKartica broj={d.broj} disabled={d.disabled} neaktuelni="false"/>:
+                        <Link to={`/termin/${d._id}/${params.id}`} key={d._id}><DanKartica broj={d.broj} disabled={d.disabled} neaktuelni="false"/></Link>
+                        ))
                 }
                 {
-                    buduci.map((d, index)=>(<DanKartica key={index + 10000} broj={d.broj} disabled={d.disabled}/>))
+                    buduci.map((d, index)=>(<DanKartica key={index + 10000} broj={d.broj} disabled={d.disabled} neaktuelni="true"/>))
                 }
             </div>
         </div>

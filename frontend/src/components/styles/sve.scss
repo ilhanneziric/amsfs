@@ -8,13 +8,15 @@ body{
 .bodyKalendar{
     display: flex;
     flex-wrap: wrap;
-    margin: 0 30rem 0 30rem
+    margin: 0 30rem 0 30rem;
 }
 
 .bodyTermini{
     display: flex;
     flex-wrap: wrap;
-    margin: 0 23rem 0 23rem
+    margin: 0 23rem 0 23rem;
+    // align-items: center;
+    justify-content: center;
 }
 
 a{

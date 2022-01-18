@@ -1,54 +1,37 @@
 @import './colors';
 
-.bodyDanUnDisabled{
+@mixin bodyDan($bordercic, $colorcic) {
     margin: 2px;
     width: 67.8px;
     height: 67.8px;
     text-align: center;
     font-size: 1.5rem;
-    border: 4px solid $lightBlue;
-    color: $lightDarkBlue;
     border-radius: 15%;
-    transition: transform 0.2s; //, box-shadow 0.2s
     display: flex; 
     align-items: center;
     justify-content: center;
+    border: $bordercic;
+    color: $colorcic;
 }
 
+.bodyDanUnDisabled{
+    @include bodyDan(4px solid $lightBlue, $lightDarkBlue);
+    transition: transform 0.2s;
+}
 
 .bodyDanDisabled{
-    margin: 2px;
-    width: 67.8px;
-    height: 67.8px;
-    text-align: center;
-    font-size: 1.5rem;
-    border: 4px solid #b8cecc;
-    color: $grey;
-    border-radius: 15%;
-    display: flex; 
-    align-items: center;
-    justify-content: center;
+    @include bodyDan(4px solid $disableBlue, $disableBlue);
 }
 
-// .undisabled{
-//     border: 4px solid $lightBlue;
-//     color: $lightDarkBlue;
-// }
-
-// .disabled{
-//     border: 4px solid $lightDarkBlue;
-//     color: $lightDarkBlue;
-// }
+.bodyDanDisabledNeAktualni{
+    @include bodyDan(4px solid $grey, $grey);
+}
 
 .bodyDanUnDisabled:hover{
     background-color: $lightBlue;
     transform: scale(1.1);
-
-    // box-shadow: 0px 0px 20px -7px rgba(0,0,0,0.86);
-    // -webkit-box-shadow: 0px 0px 20px -7px rgba(0,0,0,0.86);
-    // -moz-box-shadow: 0px 0px 20px -7px rgba(0,0,0,0.86);
 }
 
-.bodyDanDisabled:hover{
+.bodyDanDisabled:hover, .bodyDanDisabledNeAktualni:hover{
     cursor: not-allowed;
 }
