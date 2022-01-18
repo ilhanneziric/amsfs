@@ -8,6 +8,7 @@ import TretmanScreen from './screens/TretmanScreen';
 import KalendarScreen from './screens/KalendarScreen';
 import TerminScreen from './screens/TerminScreen';
 import PotvrdaScreen from './screens/PotvrdaScreen';
+import UnosScreen from './screens/UnosScreen';
 import './components/styles/sve.scss'
 
 //components
@@ -24,8 +25,9 @@ function App() {
             <Route path='/kategorija/:id' element = {<KategorijaScreen/>}/>
             <Route path='/tretman/:id' element = {<TretmanScreen/>}/>
             <Route path='/kalendar/:id' element = {<KalendarScreen/>}/>
-            <Route path='/termin/:danid/:tretmanid' element = {<TerminScreen/>}/>
-            <Route path='/potvrda' element = {<PotvrdaScreen/>}/>
+            <Route path='/termin/:tretmanid/:danid' element = {<TerminScreen/>}/>
+            <Route path='/unos/:sat/:minuta/:danid/:tretmanid' element = {<UnosScreen/>}/>
+            <Route path='/potvrda/:sat/:minuta/:danid/:tretmanid/:ime/:telefon' element = {<PotvrdaScreen/>}/>
           </Routes>
       </main>
     </BrowserRouter>

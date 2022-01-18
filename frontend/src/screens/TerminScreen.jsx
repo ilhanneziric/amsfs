@@ -1,7 +1,7 @@
 import { Link, useParams} from "react-router-dom"
 import NatragBtn from "../components/NatragBtn";
 import TerminKartica from "../components/TerminKartica";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef} from "react";
 import axios from "axios";
 const {poredjenjeTermina} = require('../funkcije');
 
@@ -23,7 +23,6 @@ const TerminScreen = () => {
         const resultt = await axios(`http://localhost:5000/api/tretman/${params.tretmanid}`);
         setTretman(resultt.data);
     }, []);
-    
     useEffect(async() => {
         for (let i = 0; i < ztermini.length; i++) {
             
@@ -78,8 +77,6 @@ const TerminScreen = () => {
         for (let r = 0; r < bezZauzetihTermina.length; r++) {
             for (let t = 0; t < reverseTermini.length; t++) {
                 if(poredjenjeTermina(bezZauzetihTermina[r], reverseTermini[t])){
-                    // console.log(`isti su: sviterminiid:${r}-${bezZauzetihTermina[r].sat}-${bezZauzetihTermina[r].minuta}, reverseterminiid: ${t}-${reverseTermini[t].sat}-${reverseTermini[t].minuta}`);
-                    // console.log(`sat: ${bezZauzetihTermina[r].sat}-${reverseTermini[t].sat}, minuta: ${bezZauzetihTermina[r].minuta}-${reverseTermini[t].minuta}`);
                     praviTermini.push(bezZauzetihTermina[r]);
                 }                
             }    
@@ -90,22 +87,22 @@ const TerminScreen = () => {
     console.log(ptretmani);
     return (
         <div className="body">
-        <div className="naslov">
-            <Link to={`/kalendar/${params.tretmanid}`}><NatragBtn/></Link>
-            <h1 className="">Odaberite vrijeme termina<hr className="crta" /></h1>
-            <div className="bodyTermini">
-                {
-                    ptretmani.map((t, index) => (
-                        <Link to='/potvrda' key={index}>
-                            <TerminKartica termin = {t}/>
-                        </Link>
-                    ))
+            <div className="naslov">
+                <Link to={`/kalendar/${params.tretmanid}`}><NatragBtn/></Link>
+                <h1 className="">Odaberite vrijeme termina<hr className="crta" /></h1>
+                <div className="bodyTermini">
+                    {
+                        ptretmani.map((t, index) => (
+                            <Link to={`/unos/${t.sat}/${t.minuta}/${params.danid}/${params.tretmanid}`} key={index}>
+                                <TerminKartica termin = {t}/>
+                            </Link>
+                        ))
 
-                }
+                    }
+                </div>
             </div>
+            <br/>
         </div>
-        <br/>
-    </div>
     )
 }
 
