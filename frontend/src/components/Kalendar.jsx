@@ -62,7 +62,7 @@ const Kalendar = ( {prosli, sadasnji, buduci}) => {
                     sadasnji.map((d) => (
                         d.disabled === "true" ? 
                         <DanKartica key={d._id} broj={d.broj} disabled={d.disabled} neaktuelni="false"/>:
-                        <Link to={`/termin/${params.id}/${d._id}`} key={d._id}><DanKartica broj={d.broj} disabled={d.disabled} neaktuelni="false"/></Link>
+                        <Link to={`/termin/${d._id}/${params.id}`} key={d._id}><DanKartica broj={d.broj} disabled={d.disabled} neaktuelni="false"/></Link>
                         ))
                 }
                 {

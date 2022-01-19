@@ -62,7 +62,7 @@ const KalendarScreen = () => {
         <div className="body">
             <div className="naslov">
                 <Link to='/tretman/sz'><NatragBtn/></Link>
-                <h1 className="">Odaberite dan u kojem želite rezervisati termin<hr className="crta" /></h1>
+                <h1 className="">Odaberite dan u kojem želite rezervisati termin<hr className="crta"/></h1>
             </div>
             <MjesecSwitcher lijevo={lijevo} desno={desno} mjesec={mjesec} setujDesno={setujDesno} setujLijevo={setujLijevo}/>,
             <Kalendar prosli={prosliMjesec} sadasnji={dani} buduci={buduciMjesec}/>
