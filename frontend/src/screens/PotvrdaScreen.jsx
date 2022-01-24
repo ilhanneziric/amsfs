@@ -28,9 +28,34 @@ const PotvrdaScreen = () => {
     }, [dan]);
     return (
         <div className="body">
+
+
             <div className="naslov">
                 <Link to={`/unos/${params.sat}/${params.minuta}/${params.danid}/${params.tretmanid}`}><NatragBtn/></Link>
-                <h1 className="">Potvrdite rezervaciju<hr className="crta"/></h1>
+                <div className="wizard">
+                    <Link to='/'><div className="dugme prosla">1</div></Link>
+                    <div className="linija proslalinija"></div>
+                    
+                    {
+                        tretman.kategorija === "kz" || tretman.kategorija === "sz" || tretman.kategorija === "dz" ? 
+                        <Link to='/kategorija/zensko'><div className="dugme prosla">2</div></Link>: 
+                        <Link to='/kategorija/musko'><div className="dugme prosla">2</div></Link>
+                    }
+                    
+                    <div className="linija proslalinija"></div>
+                    <Link to={`/tretman/${tretman.kategorija}`}> <div className="dugme prosla">3</div></Link>
+
+                    <div className="linija proslalinija"></div>
+                    <Link to={`/kalendar/${params.tretmanid}/${tretman.kategorija}`}><div className="dugme prosla">4</div></Link>
+
+                    <div className="linija proslalinija"></div>
+                    <Link to={`/termin/${params.danid}/${params.tretmanid}`}><div className="dugme prosla">5</div></Link>
+                    <div className="linija proslalinija"></div>
+                    <Link to={`/unos/${params.sat}/${params.minuta}/${params.danid}/${params.tretmanid}`}><div className="dugme prosla">6</div></Link>
+                    <div className="linija proslalinija"></div>
+                    <div className="dugme prosla">7</div>
+                </div>
+                <h4>POTVRDITE REZERVACIJU<hr className="crta" /></h4>
                 <div className="bodyPotvrda">
                     <h1 className="potvrdaNaslov">Vaša rezervacija:</h1>
                     <p className="potvrdaItem"><b>Datum:</b> {dan.broj}.{mjesec.broj}.{mjesec.godina}.</p>

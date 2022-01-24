@@ -6,9 +6,11 @@ import DanKartica from "../components/DanKartica";
 import MjesecSwitcher from "../components/MjesecSwitcher";
 import NatragBtn from "../components/NatragBtn";
 import Kalendar from "../components/Kalendar";
+import Wizard from "../components/Wizard";
 
 
 const KalendarScreen = () => {
+    const params = useParams();
     const [mjesec, setMjesec] = useState({});
     const [dani,setDani] = useState([]);
     const [lijevo,setLijevo] = useState({});
@@ -60,9 +62,34 @@ const KalendarScreen = () => {
     
     return (
         <div className="body">
+
+
             <div className="naslov">
-                <Link to='/tretman/sz'><NatragBtn/></Link>
-                <h1 className="">Odaberite dan u kojem želite rezervisati termin<hr className="crta"/></h1>
+                <Link to={`/tretman/${params.kategorija}`}><NatragBtn/></Link>
+                <div className="wizard">
+                    <Link to='/'><div className="dugme prosla">1</div></Link>
+                    <div className="linija proslalinija"></div>
+                    {
+                        params.kategorija === "kz" || params.kategorija === "sz" || params.kategorija === "dz" ? 
+                        <Link to='/kategorija/zensko'><div className="dugme prosla">2</div></Link>: 
+                        <Link to='/kategorija/musko'><div className="dugme prosla">2</div></Link>
+                    }
+
+
+                    <div className="linija proslalinija"></div>
+                    <Link to={`/tretman/${params.kategorija}`}> <div className="dugme prosla">3</div></Link>
+
+
+                    <div className="linija proslalinija"></div>
+                    <div className="dugme prosla">4</div>
+                    <div className="linija"></div>
+                    <div className="dugme nijeprosla">5</div>
+                    <div className="linija"></div>
+                    <div className="dugme nijeprosla">6</div>
+                    <div className="linija"></div>
+                    <div className="dugme nijeprosla">7</div>
+                </div>
+                <h4>ODABERITE DAN U KOJEM ŽELITE REZERVISATI TERMIN<hr className="crta" /></h4>
             </div>
             <MjesecSwitcher lijevo={lijevo} desno={desno} mjesec={mjesec} setujDesno={setujDesno} setujLijevo={setujLijevo}/>,
             <Kalendar prosli={prosliMjesec} sadasnji={dani} buduci={buduciMjesec}/>

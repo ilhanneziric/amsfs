@@ -24,26 +24,42 @@ const TretmanScreen = () => {
         <div className="body">
             
 
-
             <div className="naslov">
                 {
                     params.id === "kz" || params.id === "sz" || params.id === "dz" ? 
                     <Link to='/kategorija/zensko'><NatragBtn/></Link>: 
                     <Link to='/kategorija/musko'><NatragBtn/></Link>
                 }
-                <h1 className="">Odaberite tretman<hr className="crta" /></h1>
+            <div className="wizard">
+                <Link to='/'><div className="dugme prosla">1</div></Link>
+                <div className="linija proslalinija"></div>
+                {
+                    params.id === "kz" || params.id === "sz" || params.id === "dz" ? 
+                    <Link to='/kategorija/zensko'><div className="dugme prosla">2</div></Link>: 
+                    <Link to='/kategorija/musko'><div className="dugme prosla">2</div></Link>
+                }
+                
+                <div className="linija proslalinija"></div>
+                <div className="dugme prosla">3</div>
+                <div className="linija"></div>
+                <div className="dugme nijeprosla">4</div>
+                <div className="linija"></div>
+                <div className="dugme nijeprosla">5</div>
+                <div className="linija"></div>
+                <div className="dugme nijeprosla">6</div>
+                <div className="linija"></div>
+                <div className="dugme nijeprosla">7</div>
+            </div>
+                <h4>ODABERITE TRETMAN<hr className="crta" /></h4>
             </div>
 
 
 
             {tretmani.map((tretman) => (
-                <Link to={`/kalendar/${tretman._id}`} key={tretman._id}>
+                <Link to={`/kalendar/${tretman._id}/${tretman.kategorija}`} key={tretman._id}>
                     <TretmanKartica key={tretman._id} naslov={tretman.naslov} opis={tretman.opis === '' ? '' : tretman.opis} trajanje={tretman.trajanje} cijena={tretman.cijena}/>
                 </Link>
             ))}
-
-            {/* <button><Link to='/kalendar'>dalje</Link></button>
-            <button><Link to='/kategorija'>nazad</Link></button> */}
         </div>
     )
 }

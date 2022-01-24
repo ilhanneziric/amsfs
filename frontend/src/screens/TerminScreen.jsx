@@ -6,6 +6,7 @@ import axios from "axios";
 const {poredjenjeTermina} = require('../funkcije');
 
 
+
 const TerminScreen = () => {
     const params = useParams();
     const [ztermini,setZTermini] = useState([]);
@@ -87,9 +88,33 @@ const TerminScreen = () => {
     console.log(ptretmani);
     return (
         <div className="body">
+
+
             <div className="naslov">
-                <Link to={`/kalendar/${params.tretmanid}`}><NatragBtn/></Link>
-                <h1 className="">Odaberite vrijeme termina<hr className="crta" /></h1>
+                <Link to={`/kalendar/${params.tretmanid}/${tretman.kategorija}`}><NatragBtn/></Link>
+                <div className="wizard">
+                    <Link to='/'><div className="dugme prosla">1</div></Link>
+                    <div className="linija proslalinija"></div>
+
+                    {
+                        tretman.kategorija === "kz" || tretman.kategorija === "sz" || tretman.kategorija === "dz" ? 
+                        <Link to='/kategorija/zensko'><div className="dugme prosla">2</div></Link>: 
+                        <Link to='/kategorija/musko'><div className="dugme prosla">2</div></Link>
+                    }
+                    
+                    <div className="linija proslalinija"></div>
+                    <Link to={`/tretman/${tretman.kategorija}`}> <div className="dugme prosla">3</div></Link>
+                    
+                    <div className="linija proslalinija"></div>
+                    <Link to={`/kalendar/${params.tretmanid}/${tretman.kategorija}`}><div className="dugme prosla">4</div></Link>
+                    <div className="linija proslalinija"></div>
+                    <div className="dugme prosla">5</div>
+                    <div className="linija"></div>
+                    <div className="dugme nijeprosla">6</div>
+                    <div className="linija"></div>
+                    <div className="dugme nijeprosla">7</div>
+                </div>
+                <h4>ODABERITE VRIJEME TERMINA<hr className="crta" /></h4>
                 <div className="bodyTermini">
                     {
                         ptretmani.map((t, index) => (

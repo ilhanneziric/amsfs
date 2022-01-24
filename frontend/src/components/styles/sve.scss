@@ -1,4 +1,6 @@
 @import './colors';
+@import './wizard.scss';
+
 // @import 'bootstrap/dist/css/bootstrap.min.css';
 @import "~bootstrap/scss/bootstrap";
 
@@ -11,7 +13,8 @@ body{
 .bodyKalendar{
     display: flex;
     flex-wrap: wrap;
-    margin: 0 30rem 0 30rem;
+    // margin: 0 30rem 0 30rem;
+    margin: 0 25rem 0 25rem;
 }
 
 .bodyTermini{
@@ -31,7 +34,7 @@ a{
 }
 
 .naslov{
-    margin: 0;
+    margin: 20px;
     text-align: center;
     padding: 0.3rem 2rem 0.3rem 2rem;
     font-size: 1rem;

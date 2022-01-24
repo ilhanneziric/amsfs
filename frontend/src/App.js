@@ -25,7 +25,7 @@ function App() {
             <Route path='/' element = {<SpolScreen/>}/>
             <Route path='/kategorija/:spol' element = {<KategorijaScreen/>}/>
             <Route path='/tretman/:id' element = {<TretmanScreen/>}/>
-            <Route path='/kalendar/:id' element = {<KalendarScreen/>}/>
+            <Route path='/kalendar/:tretmanid/:kategorija' element = {<KalendarScreen/>}/>
             <Route path='/termin/:danid/:tretmanid' element = {<TerminScreen/>}/>
             <Route path='/unos/:sat/:minuta/:danid/:tretmanid' element = {<UnosScreen/>}/>
             <Route path='/potvrda/:sat/:minuta/:danid/:tretmanid/:ime/:telefon' element = {<PotvrdaScreen/>}/>

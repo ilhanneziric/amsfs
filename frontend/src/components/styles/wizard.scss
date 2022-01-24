@@ -1,0 +1,45 @@
+@import './colors';
+
+.wizard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 30px 0;
+}
+
+.dugme{
+    display: inline;
+    border-radius: 50px 50px;
+    padding: 10px;
+    font-weight: 700;
+    border: 4px solid $lightBlue;
+    color: $lightDarkBlue;
+}
+
+.linija{
+    display: inline;
+    width: 5rem;
+    background-color: $grey;
+    height: 4px;
+}
+
+.prosla{
+    background-color: $lightBlue;
+}
+
+.proslalinija{
+    background-color: $lightBlue;
+}
+
+.nijeprosla{
+    border: 4px solid $grey;
+}
+
+.nijeprosla:hover{
+    cursor: not-allowed;
+}
+
+.prosla:hover{
+    background-color: white;
+    cursor: pointer;
+}

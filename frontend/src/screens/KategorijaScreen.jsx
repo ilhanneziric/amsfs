@@ -15,9 +15,26 @@ const KategorijaScreen = () => {
 
     return (
         <div className="body">
+            
+
         <div className="naslov">
             <Link to='/'><NatragBtn className="ulijevo"/></Link>
-            <h1>Odaberite veličinu vaše kose<hr className="crta" /></h1>
+            <div className="wizard">
+            <Link to='/'><div className="dugme prosla">1</div></Link>
+                <div className="linija proslalinija"></div>
+                <div className="dugme prosla">2</div>
+                <div className="linija"></div>
+                <div className="dugme nijeprosla">3</div>
+                <div className="linija"></div>
+                <div className="dugme nijeprosla">4</div>
+                <div className="linija"></div>
+                <div className="dugme nijeprosla">5</div>
+                <div className="linija"></div>
+                <div className="dugme nijeprosla">6</div>
+                <div className="linija"></div>
+                <div className="dugme nijeprosla">7</div>
+            </div>
+            <h4>ODABERITE VELIČINU VAŠE KOSE<hr className="crta" /></h4>
         </div>
         <div className="kartice">
             {params.spol === "musko" &&  <Link to='/tretman/km'><Kartica imageURL={kratkaM} naslov="KRATKA KOSA"/></Link>}
