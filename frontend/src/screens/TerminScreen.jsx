@@ -1,10 +1,13 @@
 import { Link, useParams} from "react-router-dom"
 import NatragBtn from "../components/NatragBtn";
+import Wizard from "../components/Wizard";
+
 import TerminKartica from "../components/TerminKartica";
 import { useState, useEffect, useRef} from "react";
 import axios from "axios";
+import { useSelector, useDispatch} from 'react-redux';
+import { updateUrlParams } from "../redux/actions/urlParamsActions";
 const {poredjenjeTermina} = require('../funkcije');
-
 
 
 const TerminScreen = () => {
@@ -17,6 +20,13 @@ const TerminScreen = () => {
     let bezZauzetihTermina = [];
     let praviTermini = [];
     const [ptretmani, setPTretmani] = useState([]);
+    const [spol, setSpol] = useState('');
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        setSpol(tretman.kategorija === "kz" || tretman.kategorija === "sz" || tretman.kategorija === "dz" ? 'zensko': 'musko');
+        dispatch(updateUrlParams({ id: 5, spol: spol, kategorija: tretman.kategorija, tretmanid: params.tretmanid, danid: params.danid, minuta:"", sat:"", ime:"", telefon:""}));
+    }, [tretman]);
 
     useEffect(async () => {
         const result = await axios(`http://localhost:5000/api/termin/dan/${params.danid}`);
@@ -92,28 +102,8 @@ const TerminScreen = () => {
 
             <div className="naslov">
                 <Link to={`/kalendar/${params.tretmanid}/${tretman.kategorija}`}><NatragBtn/></Link>
-                <div className="wizard">
-                    <Link to='/'><div className="dugme prosla">1</div></Link>
-                    <div className="linija proslalinija"></div>
-
-                    {
-                        tretman.kategorija === "kz" || tretman.kategorija === "sz" || tretman.kategorija === "dz" ? 
-                        <Link to='/kategorija/zensko'><div className="dugme prosla">2</div></Link>: 
-                        <Link to='/kategorija/musko'><div className="dugme prosla">2</div></Link>
-                    }
-                    
-                    <div className="linija proslalinija"></div>
-                    <Link to={`/tretman/${tretman.kategorija}`}> <div className="dugme prosla">3</div></Link>
-                    
-                    <div className="linija proslalinija"></div>
-                    <Link to={`/kalendar/${params.tretmanid}/${tretman.kategorija}`}><div className="dugme prosla">4</div></Link>
-                    <div className="linija proslalinija"></div>
-                    <div className="dugme prosla">5</div>
-                    <div className="linija"></div>
-                    <div className="dugme nijeprosla">6</div>
-                    <div className="linija"></div>
-                    <div className="dugme nijeprosla">7</div>
-                </div>
+                <Wizard/>
+                
                 <h4>ODABERITE VRIJEME TERMINA<hr className="crta" /></h4>
                 <div className="bodyTermini">
                     {

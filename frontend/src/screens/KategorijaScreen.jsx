@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom"
 import NatragBtn from "../components/NatragBtn";
+import Wizard from "../components/Wizard";
 
 import Kartica from '../components/Kartica';
 import kratkaM from '../icons/muskeFrizure/kratkaM.png';
@@ -9,31 +10,25 @@ import kratkaZ from '../icons/zenskeFrizure/kratkaZ.png';
 import srednjaZ from '../icons/zenskeFrizure/srednjaZ.png';
 import dugaZ from '../icons/zenskeFrizure/dugaZ.png';
 
+import { useSelector, useDispatch} from 'react-redux';
+import { useEffect } from "react";
+import { updateUrlParams } from "../redux/actions/urlParamsActions";
 
 const KategorijaScreen = () => {
     const params = useParams();
-
+    
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(updateUrlParams({ id: 2, spol: params.spol, kategorija:"", tretmanid:"", danid:"", minuta:"", sat:"", ime:"", telefon:""}));
+    }, [])
     return (
         <div className="body">
             
 
         <div className="naslov">
             <Link to='/'><NatragBtn className="ulijevo"/></Link>
-            <div className="wizard">
-            <Link to='/'><div className="dugme prosla">1</div></Link>
-                <div className="linija proslalinija"></div>
-                <div className="dugme prosla">2</div>
-                <div className="linija"></div>
-                <div className="dugme nijeprosla">3</div>
-                <div className="linija"></div>
-                <div className="dugme nijeprosla">4</div>
-                <div className="linija"></div>
-                <div className="dugme nijeprosla">5</div>
-                <div className="linija"></div>
-                <div className="dugme nijeprosla">6</div>
-                <div className="linija"></div>
-                <div className="dugme nijeprosla">7</div>
-            </div>
+            <Wizard/>
+            
             <h4>ODABERITE VELIČINU VAŠE KOSE<hr className="crta" /></h4>
         </div>
         <div className="kartice">

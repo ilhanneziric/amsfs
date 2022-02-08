@@ -2,13 +2,18 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"
 import NatragBtn from "../components/NatragBtn";
+import Wizard from "../components/Wizard";
+
 import { Modal } from 'react-bootstrap';
+import { useSelector, useDispatch} from 'react-redux';
+import { updateUrlParams } from "../redux/actions/urlParamsActions";
 
 const PotvrdaScreen = () => {
     const params = useParams();
     const [dan, setDan] = useState({});
     const [tretman, setTretman] = useState({});
     const [mjesec, setMjesec] = useState({});
+    const [spol, setSpol] = useState('');
 
     const [show, setShow] = useState(false);
 
@@ -26,35 +31,30 @@ const PotvrdaScreen = () => {
         const result = await axios(`http://localhost:5000/api/mjesec/${dan.mjesec}`);
         setMjesec(result.data);
     }, [dan]);
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        setSpol(tretman.kategorija === "kz" || tretman.kategorija === "sz" || tretman.kategorija === "dz" ? 'zensko': 'musko');
+        dispatch(updateUrlParams({ 
+            id: 7, 
+            spol: spol, 
+            kategorija: tretman.kategorija, 
+            tretmanid: params.tretmanid, 
+            danid: params.danid, 
+            minuta: params.minuta, 
+            sat: params.sat, 
+            ime: params.ime, 
+            telefon: params.telefon
+        }));
+    }, [tretman]);
     return (
         <div className="body">
 
 
             <div className="naslov">
                 <Link to={`/unos/${params.sat}/${params.minuta}/${params.danid}/${params.tretmanid}`}><NatragBtn/></Link>
-                <div className="wizard">
-                    <Link to='/'><div className="dugme prosla">1</div></Link>
-                    <div className="linija proslalinija"></div>
-                    
-                    {
-                        tretman.kategorija === "kz" || tretman.kategorija === "sz" || tretman.kategorija === "dz" ? 
-                        <Link to='/kategorija/zensko'><div className="dugme prosla">2</div></Link>: 
-                        <Link to='/kategorija/musko'><div className="dugme prosla">2</div></Link>
-                    }
-                    
-                    <div className="linija proslalinija"></div>
-                    <Link to={`/tretman/${tretman.kategorija}`}> <div className="dugme prosla">3</div></Link>
-
-                    <div className="linija proslalinija"></div>
-                    <Link to={`/kalendar/${params.tretmanid}/${tretman.kategorija}`}><div className="dugme prosla">4</div></Link>
-
-                    <div className="linija proslalinija"></div>
-                    <Link to={`/termin/${params.danid}/${params.tretmanid}`}><div className="dugme prosla">5</div></Link>
-                    <div className="linija proslalinija"></div>
-                    <Link to={`/unos/${params.sat}/${params.minuta}/${params.danid}/${params.tretmanid}`}><div className="dugme prosla">6</div></Link>
-                    <div className="linija proslalinija"></div>
-                    <div className="dugme prosla">7</div>
-                </div>
+                <Wizard/>
+               
                 <h4>POTVRDITE REZERVACIJU<hr className="crta" /></h4>
                 <div className="bodyPotvrda">
                     <h1 className="potvrdaNaslov">Vaša rezervacija:</h1>

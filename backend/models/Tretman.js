@@ -17,7 +17,7 @@ const tretmanSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-     kategorija: {
+    kategorija: {
         type: String,
         required: true
     }

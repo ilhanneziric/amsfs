@@ -169,3 +169,18 @@ hr.crta{
     background-color: white;
     cursor: pointer;
 }
+
+.nazivDana{
+    margin: 2px;
+    // width: 67.8px;
+    // height: 67.8px;
+    width: 98.7px;
+    text-align: center;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    border: 4px solid $lightDarkBlue;
+    color: $lightDarkBlue;
+}

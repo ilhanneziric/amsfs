@@ -1,55 +1,38 @@
 import { Link, useParams } from "react-router-dom"
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useSelector, useDispatch} from 'react-redux';
+import { updateUrlParams } from "../redux/actions/urlParamsActions";
 
 import TretmanKartica from "../components/TretmanKartica";
 import NatragBtn from "../components/NatragBtn";
+import Wizard from "../components/Wizard";
 
 const TretmanScreen = () => {
     const params = useParams();
     const [tretmani,setTretmani] = useState([]);
+    const [spol, setSpol] = useState(params.kategorija === "kz" || params.kategorija === "sz" || params.kategorija === "dz" ? 'zensko': 'musko');
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(updateUrlParams({ id: 3, spol: spol, kategorija: params.kategorija, tretmanid:"", danid:"", minuta:"", sat:"", ime:"", telefon:""}));
+    }, [])
 
     useEffect(async () => {
-        const result = await axios(`http://localhost:5000/api/tretman/kategorija/${params.id}`);
+        const result = await axios(`http://localhost:5000/api/tretman/kategorija/${params.kategorija}`);
         setTretmani(result.data);
     }, []);
 
     // console.log(tretmani);
     const tDatum = new Date();
-    const bla = {
-        broj: tDatum.getMonth() + 1,
-        godina: tDatum.getFullYear()
-    };
     return (
         <div className="body">
             
 
             <div className="naslov">
-                {
-                    params.id === "kz" || params.id === "sz" || params.id === "dz" ? 
-                    <Link to='/kategorija/zensko'><NatragBtn/></Link>: 
-                    <Link to='/kategorija/musko'><NatragBtn/></Link>
-                }
-            <div className="wizard">
-                <Link to='/'><div className="dugme prosla">1</div></Link>
-                <div className="linija proslalinija"></div>
-                {
-                    params.id === "kz" || params.id === "sz" || params.id === "dz" ? 
-                    <Link to='/kategorija/zensko'><div className="dugme prosla">2</div></Link>: 
-                    <Link to='/kategorija/musko'><div className="dugme prosla">2</div></Link>
-                }
+                <Link to={`/kategorija/${spol}`}><NatragBtn/></Link>
+                <Wizard/>
                 
-                <div className="linija proslalinija"></div>
-                <div className="dugme prosla">3</div>
-                <div className="linija"></div>
-                <div className="dugme nijeprosla">4</div>
-                <div className="linija"></div>
-                <div className="dugme nijeprosla">5</div>
-                <div className="linija"></div>
-                <div className="dugme nijeprosla">6</div>
-                <div className="linija"></div>
-                <div className="dugme nijeprosla">7</div>
-            </div>
                 <h4>ODABERITE TRETMAN<hr className="crta" /></h4>
             </div>
 

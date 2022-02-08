@@ -54,6 +54,13 @@ const Kalendar = ( {prosli, sadasnji, buduci}) => {
     return (
         <div>
             <div className="bodyKalendar">
+                <div className="nazivDana">PON</div>
+                <div className="nazivDana">UTO</div>
+                <div className="nazivDana">SRI</div>
+                <div className="nazivDana">ČET</div>
+                <div className="nazivDana">PET</div>
+                <div className="nazivDana">SUB</div>
+                <div className="nazivDana">NED</div>
                 {
                     prosli.reverse().map((d,index)=>(<DanKartica key={index} broj={d.broj} disabled={d.disabled} neaktuelni="true"/>))
                 }
