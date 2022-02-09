@@ -14,11 +14,32 @@ const PotvrdaScreen = () => {
     const [tretman, setTretman] = useState({});
     const [mjesec, setMjesec] = useState({});
     const [spol, setSpol] = useState('');
-
+    const napomena = useSelector(state => state.napomena);
+    
+    
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    // const handleShow = () => setShow(true);
+
+    const potvrda = () => {
+        setShow(true);
+        const noviTermin = {
+            sat: params.sat,
+            minuta: params.minuta,
+            ime: params.ime,
+            telefon: params.telefon,
+            napomena: napomena,
+            isPrihvacen: false,
+            dan: params.danid,
+            tretman: params.tretmanid
+        };
+        const  posalji = async (obj) => {
+            const response = await axios.post('http://localhost:5000/api/termin/', obj);
+            console.log(response);
+        }
+        posalji(noviTermin);
+        //console.log(noviTermin);
+    }
 
     useEffect(async() => {
         const result = await axios(`http://localhost:5000/api/dan/${params.danid}`);
@@ -65,8 +86,8 @@ const PotvrdaScreen = () => {
                     <p className="potvrdaItem"><b>Cijena tretmana:</b> {tretman.cijena}KM</p>
                     <p className="potvrdaItem"><b>Ime i prezime:</b> {params.ime}</p>
                     <p className="potvrdaItem"><b>Telefon:</b> {params.telefon}</p>
-                    {/* <p className="potvrdaItem"><b>Napomena:</b> Ovo je napomena</p>     ovo uraditi kada budem setovo redux      */}
-                    <div onClick={handleShow} className="userpotvrdabtn">POTVRDI</div>
+                    {napomena !== '' && <p className="potvrdaItem"><b>Napomena:</b> {napomena}</p> }         
+                    <div onClick={() => potvrda()} className="userpotvrdabtn">POTVRDI</div>
                 </div>
                 <Modal show={show} onHide={handleClose} backdrop="static" centered={true}>
                     <Modal.Header>

@@ -1,0 +1,1 @@
+export const UPDATE_ADMIN_DAN = "UPDATE_ADMIN_DAN";

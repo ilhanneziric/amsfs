@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector, useDispatch} from 'react-redux';
 import { updateUrlParams } from "../redux/actions/urlParamsActions";
+import { updAdminDan } from '../redux/actions/adminDanActions';
 
-import DanKartica from "../components/DanKartica";
 import MjesecSwitcher from "../components/MjesecSwitcher";
 import NatragBtn from "../components/NatragBtn";
 import Kalendar from "../components/Kalendar";

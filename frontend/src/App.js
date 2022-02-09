@@ -10,6 +10,7 @@ import KalendarScreen from './screens/KalendarScreen';
 import TerminScreen from './screens/TerminScreen';
 import PotvrdaScreen from './screens/PotvrdaScreen';
 import UnosScreen from './screens/UnosScreen';
+import AdminScreen from './screens/AdminScreen';
 import './components/styles/sve.scss'
 
 //components
@@ -29,6 +30,7 @@ function App() {
             <Route path='/termin/:danid/:tretmanid' element = {<TerminScreen/>}/>
             <Route path='/unos/:sat/:minuta/:danid/:tretmanid' element = {<UnosScreen/>}/>
             <Route path='/potvrda/:sat/:minuta/:danid/:tretmanid/:ime/:telefon' element = {<PotvrdaScreen/>}/>
+            <Route path='/admin' element = {<AdminScreen/>}/>
           </Routes>
       </main>
     </BrowserRouter>

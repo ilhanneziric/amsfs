@@ -11,6 +11,7 @@ const {getMonthName} = require('../funkcije');
 const MjesecSwitcher = ({lijevo, desno, mjesec, setujLijevo, setujDesno}) => {
     
     const params = useParams();
+
     // const [lijevo,setLijevo] = useState({});
     // const [desno, setDesno] = useState();
 

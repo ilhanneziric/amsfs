@@ -21,7 +21,7 @@ const getOneTermin = async (req,res) => {
 
 const getAllTerminiInDan = async (req,res) => {
     try {
-        const termini = await Termin.find({dan: req.params.danid});
+        const termini = await Termin.find({dan: req.params.danid}).sort({sat:1, minuta:1});
         res.json(termini);
     } catch (err) {
         res.json({message: err.message});

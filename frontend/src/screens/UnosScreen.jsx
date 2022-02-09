@@ -8,6 +8,7 @@ import { useState, useEffect, useRef} from "react";
 import axios from "axios";
 import { useSelector, useDispatch} from 'react-redux';
 import { updateUrlParams } from "../redux/actions/urlParamsActions";
+import { updNapomena } from '../redux/actions/napomenaActions';
 
 const UnosScreen = () => {
     const params = useParams();
@@ -21,10 +22,6 @@ const UnosScreen = () => {
         setTretman(resultt.data);
     }, []);
 
-    const onSubmit = (data) => {
-        navigate(`/potvrda/${params.sat}/${params.minuta}/${params.danid}/${params.tretmanid}/${data.ime}/${data.telefon}`);
-    };
-
     const dispatch = useDispatch();
     useEffect(() => {
         setSpol(tretman.kategorija === "kz" || tretman.kategorija === "sz" || tretman.kategorija === "dz" ? 'zensko': 'musko');
@@ -33,6 +30,12 @@ const UnosScreen = () => {
                 { id: 6, spol: spol, kategorija: tretman.kategorija, tretmanid: params.tretmanid, danid: params.danid, minuta: params.minuta, sat: params.sat, ime:"", telefon:""}
                 ));
     }, [tretman]);
+
+    const onSubmit = (data) => {
+        navigate(`/potvrda/${params.sat}/${params.minuta}/${params.danid}/${params.tretmanid}/${data.ime}/${data.telefon}`);
+        dispatch(updNapomena(data.napomena));
+    };
+
 
     return (
         <div className="body">
