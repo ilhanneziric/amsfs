@@ -2,10 +2,23 @@ import '../components/styles/adminHome.scss';
 import { useState, useEffect } from "react";
 import { useSelector,useDispatch } from 'react-redux';
 import { updAdminDan } from '../redux/actions/adminDanActions';
+import { addAdminDani, removeAdminDani } from '../redux/actions/adminDaniActions';
 
-const AdminKalendar = ({prosli, sadasnji, buduci}) => {
+const AdminKalendar = ({prosli, sadasnji, buduci, diskriminator}) => {
   const aktivann = useSelector(state => state.adminDan);
   const dispatch = useDispatch();
+  const adminDani = useSelector(state => state.adminDani);
+  console.log('admin dani:', adminDani);
+  // console.log('sadasnji dani:', sadasnji);
+  const pronadji = (dannn) => {
+    let pronasao = false;
+    for (let i = 0; i < adminDani.length; i++) {
+      if(adminDani[i]._id === dannn){
+        pronasao = true;
+      }
+    }
+    return pronasao;
+  } 
   return (
     <div className="adminHomePage">
       <div className="nazivAdminDana">PON</div>
@@ -19,6 +32,7 @@ const AdminKalendar = ({prosli, sadasnji, buduci}) => {
           prosli.reverse().map((d,index)=>(<div className="notThatMonth" key={index}></div>))
       }
       {
+         diskriminator === 1 ?
           sadasnji.map((d) => (
               d.disabled === "true" ? 
                 (aktivann === d._id?
@@ -27,7 +41,15 @@ const AdminKalendar = ({prosli, sadasnji, buduci}) => {
                 (aktivann === d._id?
                   <div className="adminDan adminDanAktivan" key={d._id} onClick={() => dispatch(updAdminDan(d._id))}>{d.broj}</div>:
                   <div className="adminDan" key={d._id} onClick={() => dispatch(updAdminDan(d._id))}>{d.broj}</div>)
-          ))
+          )):
+          sadasnji.map((d) => (
+
+            adminDani.length !== 0?
+              (pronadji(d._id))?
+                (console.log('isti su'),<div className="adminDan adminDanAktivan" key={d._id} onClick={() => dispatch(removeAdminDani(d))}>{d.broj}</div>):
+                (console.log('nisu isti'), <div className="adminDan" key={d._id} onClick={() => dispatch(addAdminDani(d))}>{d.broj}</div>):
+              (console.log('length je 0'), <div className="adminDan" key={d._id} onClick={() => dispatch(addAdminDani(d))}>{d.broj}</div>)
+        ))
       }
       {
           buduci.map((d, index)=>(<div className="notThatMonth" key={index + 10000}></div>))

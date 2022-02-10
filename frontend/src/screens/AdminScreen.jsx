@@ -5,7 +5,7 @@ import { useSelector, useDispatch} from 'react-redux';
 import { updateUrlParams } from "../redux/actions/urlParamsActions";
 import { updAdminDan } from "../redux/actions/adminDanActions";
 
-
+import { FaArrowRight } from "react-icons/fa";
 import DanKartica from "../components/DanKartica";
 import MjesecSwitcher from "../components/MjesecSwitcher";
 import AdminKalendar from "../components/AdminKalendar";
@@ -101,10 +101,17 @@ const AdminScreen = () => {
             }
         }
     }
-    return <div className="adminHomePage">
+    return( 
+    <div className="adminHomePage">
+        <div className="AdminDugmiciFullWidth">
+            <Link to='/admin/statistika'><div className="adminDugme">STATISTIKA<FaArrowRight className="faAdminStrelica"/></div></Link>
+        </div>
+        <div className="AdminDugmiciFullWidth">
+            <div className="adminDugme">TRETMANI<FaArrowRight className="faAdminStrelica"/></div>
+        </div>
         <div className="lijevoKalendar">
             <MjesecSwitcher lijevo={lijevo} desno={desno} mjesec={mjesec} setujDesno={setujDesno} setujLijevo={setujLijevo}/>
-            <AdminKalendar prosli={prosliMjesec} sadasnji={dani} buduci={buduciMjesec}/>
+            <AdminKalendar prosli={prosliMjesec} sadasnji={dani} buduci={buduciMjesec} diskriminator = {1}/>
         </div>
         <div className="desnoTermini">
 
@@ -126,7 +133,7 @@ const AdminScreen = () => {
             </div>
             
         </div>
-    </div>;
+    </div>);
 };
 
 export default AdminScreen;
