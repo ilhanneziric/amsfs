@@ -8,7 +8,7 @@ const AdminKalendar = ({prosli, sadasnji, buduci, diskriminator}) => {
   const aktivann = useSelector(state => state.adminDan);
   const dispatch = useDispatch();
   const adminDani = useSelector(state => state.adminDani);
-  console.log('admin dani:', adminDani);
+  // console.log('admin dani:', adminDani);
   // console.log('sadasnji dani:', sadasnji);
   const pronadji = (dannn) => {
     let pronasao = false;
@@ -46,9 +46,9 @@ const AdminKalendar = ({prosli, sadasnji, buduci, diskriminator}) => {
 
             adminDani.length !== 0?
               (pronadji(d._id))?
-                (console.log('isti su'),<div className="adminDan adminDanAktivan" key={d._id} onClick={() => dispatch(removeAdminDani(d))}>{d.broj}</div>):
-                (console.log('nisu isti'), <div className="adminDan" key={d._id} onClick={() => dispatch(addAdminDani(d))}>{d.broj}</div>):
-              (console.log('length je 0'), <div className="adminDan" key={d._id} onClick={() => dispatch(addAdminDani(d))}>{d.broj}</div>)
+                /*(console.log('isti su')),*/(<div className="adminDan adminDanAktivan" key={d._id} onClick={() => dispatch(removeAdminDani(d))}>{d.broj}</div>):
+                /*(console.log('nisu isti')),*/ (<div className="adminDan" key={d._id} onClick={() => dispatch(addAdminDani(d))}>{d.broj}</div>):
+              /*(console.log('length je 0')),*/ (<div className="adminDan" key={d._id} onClick={() => dispatch(addAdminDani(d))}>{d.broj}</div>)
         ))
       }
       {

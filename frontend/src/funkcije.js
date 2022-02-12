@@ -16,8 +16,21 @@ function getMonthName(month){
     }
 }
 
+function getTretmanKategorijaName(tretman){
+    switch(tretman){
+        case 'kz': return "Kratka ženska";
+        case 'sz': return "Srednja ženska";
+        case 'dz': return "Duga ženska";
+        case 'km': return "Kratka muška";
+        case 'sm': return "Srednja muška";
+        case 'dm': return "Duga muška";
+    }
+}
+
 function poredjenjeTermina(obj1, obj2) {
     return (obj1.sat === obj2.sat && obj1.minuta === obj2.minuta);
 }
 
-module.exports = {getMonthName, poredjenjeTermina};
+
+
+module.exports = {getMonthName, poredjenjeTermina, getTretmanKategorijaName};

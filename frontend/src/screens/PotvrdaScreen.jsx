@@ -82,7 +82,14 @@ const PotvrdaScreen = () => {
                     <p className="potvrdaItem"><b>Datum:</b> {dan.broj}.{mjesec.broj}.{mjesec.godina}.</p>
                     <p className="potvrdaItem"><b>Vrijeme:</b> {params.sat}:{params.minuta === "0" ? "00" : params.minuta}</p>
                     <p className="potvrdaItem"><b>Tretman:</b> {tretman.naslov}</p>
-                    <p className="potvrdaItem"><b>Trajanje tretmana:</b> {tretman.trajanje}min</p>
+                    {
+                        tretman.trajanje >= 60?
+                        tretman.trajanje % 60 === 0 ?
+                            <p className="potvrdaItem"><b>Trajanje tretmana:</b> {Math.floor(tretman.trajanje/60)}h</p>:
+                            <p className="potvrdaItem"><b>Trajanje tretmana:</b> {Math.floor(tretman.trajanje/60)}h {tretman.trajanje%60}min</p>:
+                        <p className="potvrdaItem"><b>Trajanje tretmana:</b> {tretman.trajanje}min</p>
+                    }
+
                     <p className="potvrdaItem"><b>Cijena tretmana:</b> {tretman.cijena}KM</p>
                     <p className="potvrdaItem"><b>Ime i prezime:</b> {params.ime}</p>
                     <p className="potvrdaItem"><b>Telefon:</b> {params.telefon}</p>

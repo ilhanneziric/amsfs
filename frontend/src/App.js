@@ -12,6 +12,7 @@ import PotvrdaScreen from './screens/PotvrdaScreen';
 import UnosScreen from './screens/UnosScreen';
 import AdminScreen from './screens/AdminScreen';
 import AdminStatistikaScreen from './screens/AdminStatistikaScreen';
+import AdminTretmaniScreen from './screens/AdminTretmaniScreen';
 import './components/styles/sve.scss'
 
 //components
@@ -33,6 +34,7 @@ function App() {
             <Route path='/potvrda/:sat/:minuta/:danid/:tretmanid/:ime/:telefon' element = {<PotvrdaScreen/>}/>
             <Route path='/admin' element = {<AdminScreen/>}/>
             <Route path='/admin/statistika' element = {<AdminStatistikaScreen/>}/>
+            <Route path='/admin/tretmani' element = {<AdminTretmaniScreen/>}/>
           </Routes>
       </main>
     </BrowserRouter>

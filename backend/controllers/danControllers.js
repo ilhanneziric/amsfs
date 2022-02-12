@@ -1,8 +1,27 @@
+const { aggregate } = require('../models/Dan');
 const Dan = require('../models/Dan');
 
 const getAllDani = async (req,res) => {
     try {
         const dani = await Dan.find();
+        res.json(dani);
+    } catch (err) {
+        res.json({message: err.message});
+    }
+};
+
+const getAllDaniWithTermin = async (req,res) => {
+    try {
+        const dani = await Dan.aggregate([
+            { $lookup:
+                {
+                    from: 'termins',
+                    localField: '_id',
+                    foreignField: 'dan',
+                    as: 'termini'
+                }
+            }
+        ]);
         res.json(dani);
     } catch (err) {
         res.json({message: err.message});
@@ -20,8 +39,17 @@ const getOneDay =  async (req,res) => {
 
 const getAllDaneInMjesec = async (req,res) => {
     try {
-        const dani = await Dan.find({mjesec: req.params.mjesecid});
-        res.json(dani);
+        const dani2 = await Dan.aggregate([
+            { $lookup:
+                {
+                    from: 'termins',
+                    localField: '_id',
+                    foreignField: 'dan',
+                    as: 'termini'
+                }
+            }
+        ]);
+        res.json(dani2.filter(dan => dan.mjesec.toString() == req.params.mjesecid));
     } catch (err) {
         res.json({message: err.message});
     }
@@ -65,6 +93,7 @@ const updateDan = async (req,res) => {
 
 module.exports = {
     getAllDani,
+    getAllDaniWithTermin,
     getOneDay,
     getAllDaneInMjesec,
     addDan,

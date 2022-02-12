@@ -4,7 +4,7 @@ const TretmanKartica = ({naslov, opis, trajanje, cijena}) => {
     return (
         <div className='bodyTretmanKartice'>
             <div className="lijevo">
-                <h2 className='naslovKartice'>{naslov}</h2>
+                <h2 className='naslovTretmanKartice'>{naslov}</h2>
                 {
                     opis===""?
                     <p className='bezopisa'>bla</p>:
@@ -12,7 +12,13 @@ const TretmanKartica = ({naslov, opis, trajanje, cijena}) => {
                 }
             </div>
             <div className="desno">
-                <h2 className="trajanje">{trajanje}min</h2>
+                {
+                    trajanje >= 60?
+                        trajanje % 60 === 0 ?
+                        <h2 className="trajanje">{Math.floor(trajanje/60)}h</h2>:
+                        <h2 className="smanjenoTrajanje">{Math.floor(trajanje/60)}h {trajanje%60}min</h2>:
+                    <h2 className="trajanje">{trajanje}min</h2>
+                }
                 <h2 className="cijena">{cijena}KM</h2>
             </div>
         </div>

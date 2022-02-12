@@ -7,16 +7,25 @@ import MjesecSwitcher from "./MjesecSwitcher";
 
 const Kalendar = ( {prosli, sadasnji, buduci}) => {
     const params = useParams();
+    // console.log(sadasnji);
     // const [dani,setDani] = useState([]);
-    // const [mjesec, setMjesec] = useState({});
+    const [mjesec, setMjesec] = useState({});
 
+    const datum = new Date();
+    const datumce = {
+        trenutniMjesec: datum.getMonth() + 1,
+        trenutniDan: datum.getDate()
+    };
     // const [prosliMjesec,setProsliMjesec] = useState([{broj:0, godina:0}]);
 
     //sa params
-    // useEffect(async () => {
-    //     const result = await axios(`http://localhost:5000/api/mjesec/${Number(params.broj)}/${Number(params.godina)}`);
-    //     setMjesec(result.data);
-    // }, []);
+    useEffect(async () => {
+        if(sadasnji.length > 0){
+            const result = await axios(`http://localhost:5000/api/mjesec/${sadasnji[0].mjesec}`);
+            setMjesec(result.data);
+            // console.log(result.data, datumce.trenutniMjesec, datumce.trenutniDan);
+        }
+    }, [sadasnji]);
     
     //ovo je radilo
     // useEffect(async () => {
@@ -65,11 +74,19 @@ const Kalendar = ( {prosli, sadasnji, buduci}) => {
                     prosli.reverse().map((d,index)=>(<DanKartica key={index} broj={d.broj} disabled={d.disabled} neaktuelni="true"/>))
                 }
                 {
+                    mjesec.broj < datumce.trenutniMjesec?
+
                     sadasnji.map((d) => (
+                        <DanKartica key={d._id} broj={d.broj} disabled={'true'} neaktuelni="false"/>
+                    )):
+
+                    sadasnji.map((d) => (
+                        d.broj <= datumce.trenutniDan?
+                        <DanKartica key={d._id} broj={d.broj} disabled={'true'} neaktuelni="false"/>:
                         d.disabled === "true" ? 
                         <DanKartica key={d._id} broj={d.broj} disabled={d.disabled} neaktuelni="false"/>:
                         <Link to={`/termin/${d._id}/${params.tretmanid}`} key={d._id}><DanKartica broj={d.broj} disabled={d.disabled} neaktuelni="false"/></Link>
-                        ))
+                    ))
                 }
                 {
                     buduci.map((d, index)=>(<DanKartica key={index + 10000} broj={d.broj} disabled={d.disabled} neaktuelni="true"/>))

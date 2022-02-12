@@ -1,17 +1,13 @@
-import { Link, useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useSelector, useDispatch} from 'react-redux';
-import { updateUrlParams } from "../redux/actions/urlParamsActions";
-import { updAdminDan } from "../redux/actions/adminDanActions";
+import { useSelector} from 'react-redux';
 
 import { FaArrowRight } from "react-icons/fa";
-import DanKartica from "../components/DanKartica";
 import MjesecSwitcher from "../components/MjesecSwitcher";
 import AdminKalendar from "../components/AdminKalendar";
 import AdminTermini from "../components/AdminTermini";
 import '../components/styles/adminHome.scss';
-import Loader from "../components/Loader";
 
 
 const AdminScreen = () => {
@@ -26,11 +22,9 @@ const AdminScreen = () => {
     const [lijevo,setLijevo] = useState({});
     const [desno, setDesno] = useState();
     const [termini, setTermini] = useState(null);
-    const [loader, setLoader] = useState(false);
     const [cekiran, setCekiran] = useState(false);
 
     const adminDan = useSelector(state => state.adminDan);
-    const dispatch = useDispatch();
 
     useEffect(async () => {
         const result = await axios(`http://localhost:5000/api/termin/dan/${adminDan}`);
@@ -107,7 +101,7 @@ const AdminScreen = () => {
             <Link to='/admin/statistika'><div className="adminDugme">STATISTIKA<FaArrowRight className="faAdminStrelica"/></div></Link>
         </div>
         <div className="AdminDugmiciFullWidth">
-            <div className="adminDugme">TRETMANI<FaArrowRight className="faAdminStrelica"/></div>
+        <Link to='/admin/tretmani'><div className="adminDugme">TRETMANI<FaArrowRight className="faAdminStrelica"/></div></Link>
         </div>
         <div className="lijevoKalendar">
             <MjesecSwitcher lijevo={lijevo} desno={desno} mjesec={mjesec} setujDesno={setujDesno} setujLijevo={setujLijevo}/>

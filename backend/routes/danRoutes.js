@@ -5,6 +5,9 @@ const danControllers = require('../controllers/danControllers');
 //vraca sve dane
 router.get('/', danControllers.getAllDani);
 
+//vraca sve dane sa terminima
+router.get('/termin', danControllers.getAllDaniWithTermin);
+
 //vraca samo jedan dan
 router.get('/:danid', danControllers.getOneDay);
 

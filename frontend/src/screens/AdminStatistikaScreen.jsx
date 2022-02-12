@@ -4,11 +4,10 @@ import axios from "axios";
 import { useSelector, useDispatch} from 'react-redux';
 
 import { FaArrowLeft } from "react-icons/fa";
-import DanKartica from "../components/DanKartica";
 import MjesecSwitcher from "../components/MjesecSwitcher";
 import AdminKalendar from "../components/AdminKalendar";
+import AdminStatistika from "../components/AdminStatistika";
 import '../components/styles/adminHome.scss';
-import Loader from "../components/Loader";
 
 const AdminStatistikaScreen = () => {
   const datum = new Date();
@@ -22,8 +21,6 @@ const AdminStatistikaScreen = () => {
   const [lijevo,setLijevo] = useState({});
   const [desno, setDesno] = useState();
 
-  const adminDan = useSelector(state => state.adminDan);
-  const dispatch = useDispatch();
 
   useEffect(async () => {
     const result = await axios(`http://localhost:5000/api/mjesec/${datumce.broj}/${datumce.godina}`);
@@ -73,25 +70,10 @@ const AdminStatistikaScreen = () => {
                 <AdminKalendar prosli={prosliMjesec} sadasnji={dani} buduci={buduciMjesec} diskriminator = {2}/>
             </div>
             <div className="desnoTermini">
-                {adminDan}
-                {/* <div className="danSwitcher">
-                    <h4 className="switcherLabel">RADNI DAN: </h4> 
-                    <label className="switch">
-                        <input type="checkbox" onChange={(e) => setujCekiranje(e)} checked={!cekiran}/>
-                        <span className="slider round"></span>
-                    </label>
-                </div>
-    
-                <div className="adminTerminiBlok">
-                {
-                   adminDan !== '' && termini !== null && termini.length !== undefined &&
-                   termini.map((d, index)=>(<AdminTermini key={index} tretmanID={d.tretman} ime={d.ime} sat={d.sat} minuta={d.minuta}/>))
-                   //<Loader/>
-                    
-                } */}
-                </div>
-                
+                <AdminStatistika/>
             </div>
+                
+        </div>
   )
 }
 
