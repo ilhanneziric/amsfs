@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { useSelector, useDispatch} from 'react-redux';
+import { useDispatch} from 'react-redux';
 
 import Kartica from '../components/Kartica';
 import Wizard from "../components/Wizard";
@@ -19,21 +19,6 @@ const SpolScreen = () => {
             
             <div className="naslov">
             <Wizard/>
-            {/* <div className="wizard">
-                <div className="dugme prosla">1</div>
-                <div className="linija"></div>
-                <div className="dugme nijeprosla">2</div>
-                <div className="linija"></div>
-                <div className="dugme nijeprosla">3</div>
-                <div className="linija"></div>
-                <div className="dugme nijeprosla">4</div>
-                <div className="linija"></div>
-                <div className="dugme nijeprosla">5</div>
-                <div className="linija"></div>
-                <div className="dugme nijeprosla">6</div>
-                <div className="linija"></div>
-                <div className="dugme nijeprosla">7</div>
-            </div> */}
                 <h4>REZERVIŠITE TERMIN ZA...<hr className="crta" /></h4>
             </div>
             <div className="kartice">

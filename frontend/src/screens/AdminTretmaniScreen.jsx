@@ -26,7 +26,6 @@ const AdminTretmaniScreen = () => {
     const response = await axios.post('http://localhost:5000/api/tretman/', data);
     const result = await axios(`http://localhost:5000/api/tretman`);
     setTretmani(result.data);
-    console.log(response);
     
   };
 
@@ -38,7 +37,6 @@ const AdminTretmaniScreen = () => {
   const izbrisi = async() => {
     setShow(false);
     const result = await axios.delete(`http://localhost:5000/api/tretman/${odabraniTretman.current}`);
-    console.log(result);
     const resultt = await axios(`http://localhost:5000/api/tretman`);
     setTretmani(resultt.data);
   }

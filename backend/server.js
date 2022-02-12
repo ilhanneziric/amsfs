@@ -14,13 +14,11 @@ app.use(express.json());
 
 const mjesecRoutes = require('./routes/mjesecRoutes');
 const danRoutes = require('./routes/danRoutes');
-const kategorijaRoutes = require('./routes/kategorijaRoutes');
 const tretmanRoutes = require('./routes/tretmanRoutes');
 const terminRoutes = require('./routes/terminRoutes');
 
 app.use('/api/mjesec', mjesecRoutes);
 app.use('/api/dan', danRoutes);
-app.use('/api/kategorija', kategorijaRoutes);
 app.use('/api/tretman', tretmanRoutes);
 app.use('/api/termin', terminRoutes);
 

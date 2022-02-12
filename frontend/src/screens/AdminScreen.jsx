@@ -77,7 +77,7 @@ const AdminScreen = () => {
         setujDane(desno._id);
     };
 
-    const setujCekiranje = (e) => {
+    const setujCekiranje = () => {
         for (let i = 0; i < dani.length; i++) {
             if(dani[i]._id == adminDan){
                 const updateuj = async()=>{
@@ -88,7 +88,6 @@ const AdminScreen = () => {
                     };
                     const result = await axios.patch(`http://localhost:5000/api/dan/${dani[i]._id}`,obj);
                     await setujDane(dani[i].mjesec);
-                    console.log(result);
                     setCekiran(!cekiran);
                 }
                 updateuj();
@@ -112,17 +111,15 @@ const AdminScreen = () => {
             <div className="danSwitcher">
                 <h4 className="switcherLabel">RADNI DAN: </h4> 
                 <label className="switch">
-                    <input type="checkbox" onChange={(e) => setujCekiranje(e)} checked={!cekiran}/>
+                    <input type="checkbox" onChange={() => setujCekiranje()} checked={!cekiran}/>
                     <span className="slider round"></span>
                 </label>
             </div>
-
+            <div className='statistikaTabelaLabel'>TERMINI:</div> 
             <div className="adminTerminiBlok">
             {
                adminDan !== '' && termini !== null && termini.length !== undefined &&
-               termini.map((d, index)=>(<AdminTermini key={index} tretmanID={d.tretman} ime={d.ime} sat={d.sat} minuta={d.minuta}/>))
-               //<Loader/>
-                
+               termini.map((d, index)=>(<AdminTermini key={index} tretmanID={d.tretman} ime={d.ime} sat={d.sat} minuta={d.minuta}/>))                
             }
             </div>
             

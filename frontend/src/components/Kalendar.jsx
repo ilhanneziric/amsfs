@@ -2,13 +2,10 @@ import { Link, useParams } from "react-router-dom"
 import { useState, useEffect } from "react";
 import axios from "axios";
 import DanKartica from "../components/DanKartica";
-import MjesecSwitcher from "./MjesecSwitcher";
 
 
 const Kalendar = ( {prosli, sadasnji, buduci}) => {
     const params = useParams();
-    // console.log(sadasnji);
-    // const [dani,setDani] = useState([]);
     const [mjesec, setMjesec] = useState({});
 
     const datum = new Date();
@@ -16,49 +13,13 @@ const Kalendar = ( {prosli, sadasnji, buduci}) => {
         trenutniMjesec: datum.getMonth() + 1,
         trenutniDan: datum.getDate()
     };
-    // const [prosliMjesec,setProsliMjesec] = useState([{broj:0, godina:0}]);
 
-    //sa params
     useEffect(async () => {
         if(sadasnji.length > 0){
             const result = await axios(`http://localhost:5000/api/mjesec/${sadasnji[0].mjesec}`);
             setMjesec(result.data);
-            // console.log(result.data, datumce.trenutniMjesec, datumce.trenutniDan);
         }
     }, [sadasnji]);
-    
-    //ovo je radilo
-    // useEffect(async () => {
-    //     const result = await axios(`http://localhost:5000/api/mjesec/${datum.getMonth() + 1}/${datum.getFullYear()}`);
-    //     setMjesec(result.data);
-    //     const rezultat = await axios(`http://localhost:5000/api/dan/mjesec/${result.data._id}`);
-    //     setDani(rezultat.data);
-    // }, []);
-    
-    //zaseban poziv
-    // useEffect(async () => {
-    //     const result = await axios(`http://localhost:5000/api/dan/mjesec/${mjesec._id === undefined ? "61e0d0a4dd71e30d38629992" : mjesec._id}`);
-    //     setDani(result.data);
-    // }, []);
-        
-    //prosliMjesec kao state
-    // useEffect(() => {
-    //     console.log(mjesec.pocetniDan);
-    //     for (let i = 0; i < mjesec.pocetniDan; i++) {
-    //         setProsliMjesec(...prosliMjesec, {broj: 31-i, disabled: "true"});
-    //     }
-    // }, []);
-
-    //ovo je radilo
-    // let prosliMjesec = [];
-    // for (let i = 0; i < mjesec.pocetniDan; i++) {
-    //     prosliMjesec.push({broj: 31-i, disabled: "true"});
-    // }
-
-    // let buduciMjesec = [];
-    // for (let i = 1; i <= (42 - (dani.length + mjesec.pocetniDan)); i++) {
-    //     buduciMjesec.push({broj: i, disabled: "true"});
-    // }
 
     return (
         <div>

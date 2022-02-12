@@ -1,7 +1,5 @@
 import '../components/styles/adminHome.scss';
 import { useState, useEffect } from "react";
-import { useSelector,useDispatch } from 'react-redux';
-import { updAdminDan } from '../redux/actions/adminDanActions';
 import axios from 'axios';
 
 const AdminKalendar = ({ime, tretmanID, sat, minuta}) => {

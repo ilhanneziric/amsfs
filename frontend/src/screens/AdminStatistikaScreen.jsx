@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useSelector, useDispatch} from 'react-redux';
 
 import { FaArrowLeft } from "react-icons/fa";
 import MjesecSwitcher from "../components/MjesecSwitcher";

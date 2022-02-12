@@ -1,10 +1,7 @@
 import '../components/styles/statistika.scss';
-import { useState, useEffect, useRef } from "react";
-import { useSelector,useDispatch } from 'react-redux';
-import { updAdminDan } from '../redux/actions/adminDanActions';
-import { addAdminDani, removeAdminDani } from '../redux/actions/adminDaniActions';
+import { useState, useEffect } from "react";
+import { useSelector } from 'react-redux';
 import axios from "axios";
-import Loader from './Loader';
 const {getTretmanKategorijaName} = require('../funkcije');
 
 const AdminStatistika = () => {
@@ -33,7 +30,6 @@ const AdminStatistika = () => {
     tretmaniFreq.sort((a, b) => {
         return b.freq - a.freq;
     });
-    console.log('tretmani ', tretmaniFreq)
     setTretmans([]);
     setZarada(0);
     for (let i = 0; i < tretmaniFreq.length; i++) {
@@ -42,8 +38,6 @@ const AdminStatistika = () => {
         setTretmans(proslo => [...proslo, result.data]);
         setZarada(stanje => stanje += result.data.cijena * result.data.freq);
     }
-    console.log('tretmani: ', tretmans);
-    console.log('zarada: ', zarada);
   }, [adminDani]);
 
   
@@ -54,35 +48,39 @@ const AdminStatistika = () => {
         <div className='radnidani'>NERADNI DANI: <p className='brojRadnihDana'>{adminDani.filter(dan => dan.disabled == 'true').length}</p></div> 
         <div className='statistikaTabelaLabel'>TOP 5 MUŠTERIJA: </div>
         <table>
-            <tr>
-                <th>IME I PREZIME</th>
-                <th>BROJ REZERVACIJA</th>
-            </tr>
-            {
-                getNajMusterija().map((mus, index) => <tr key={index}>
-                    <td>{mus.ime}</td>
-                    <td>{mus.freq}</td>
-                </tr>)
-            }
+            <tbody>
+                <tr>
+                    <th>IME I PREZIME</th>
+                    <th>BROJ REZERVACIJA</th>
+                </tr>
+                {
+                    getNajMusterija().map((mus, index) => <tr key={index}>
+                        <td>{mus.ime}</td>
+                        <td>{mus.freq}</td>
+                    </tr>)
+                }
+            </tbody>
         </table>
         <div className='statistikaTabelaLabel'>TOP 5 TRETMANA:</div> 
         <table>
-            <tr>
-                <th>NAZIV TRETMANA</th>
-                <th>KATEGORIJA</th>
-                <th>CIJENA</th>
-                <th>BROJ REZERVACIJA</th>
-                <th>ZARADA</th>
-            </tr>
-            {
-                tretmans.slice(0,5).map((tret, index) => <tr key={index}>
-                    <td>{tret.naslov}</td>
-                    <td>{getTretmanKategorijaName(tret.kategorija)}</td>
-                    <td>{tret.cijena}KM</td>
-                    <td>{tret.freq}</td>
-                    <td>{tret.cijena * tret.freq}KM</td>
-                </tr>)
-            }
+            <tbody>
+                <tr>
+                    <th>NAZIV TRETMANA</th>
+                    <th>KATEGORIJA</th>
+                    <th>CIJENA</th>
+                    <th>BROJ REZERVACIJA</th>
+                    <th>ZARADA</th>
+                </tr>
+                {
+                    tretmans.slice(0,5).map((tret, index) => <tr key={index}>
+                        <td>{tret.naslov}</td>
+                        <td>{getTretmanKategorijaName(tret.kategorija)}</td>
+                        <td>{tret.cijena}KM</td>
+                        <td>{tret.freq}</td>
+                        <td>{tret.cijena * tret.freq}KM</td>
+                    </tr>)
+                }
+            </tbody>
         </table>
         <div className='radnidani'>SVEUKUPNA ZARADA: <p className='brojRadnihDana'>{zarada}KM</p></div> 
     </div>

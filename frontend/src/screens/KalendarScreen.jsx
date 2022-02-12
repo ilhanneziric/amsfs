@@ -1,9 +1,8 @@
 import { Link, useParams } from "react-router-dom"
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useSelector, useDispatch} from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { updateUrlParams } from "../redux/actions/urlParamsActions";
-import { updAdminDan } from '../redux/actions/adminDanActions';
 
 import MjesecSwitcher from "../components/MjesecSwitcher";
 import NatragBtn from "../components/NatragBtn";
@@ -69,12 +68,9 @@ const KalendarScreen = () => {
     
     return (
         <div className="body">
-
-
             <div className="naslov">
                 <Link to={`/tretman/${params.kategorija}`}><NatragBtn/></Link>
                 <Wizard/>
-               
                 <h4>ODABERITE DAN U KOJEM ŽELITE REZERVISATI TERMIN<hr className="crta" /></h4>
             </div>
             <MjesecSwitcher lijevo={lijevo} desno={desno} mjesec={mjesec} setujDesno={setujDesno} setujLijevo={setujLijevo}/>,

@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom"
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useSelector, useDispatch} from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { updateUrlParams } from "../redux/actions/urlParamsActions";
 
 import TretmanKartica from "../components/TretmanKartica";
@@ -23,7 +23,6 @@ const TretmanScreen = () => {
         setTretmani(result.data);
     }, []);
 
-    // console.log(tretmani);
     const tDatum = new Date();
     return (
         <div className="body">

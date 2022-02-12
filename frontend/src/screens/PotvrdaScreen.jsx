@@ -19,7 +19,6 @@ const PotvrdaScreen = () => {
     
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    // const handleShow = () => setShow(true);
 
     const potvrda = () => {
         setShow(true);
@@ -35,10 +34,8 @@ const PotvrdaScreen = () => {
         };
         const  posalji = async (obj) => {
             const response = await axios.post('http://localhost:5000/api/termin/', obj);
-            console.log(response);
         }
         posalji(noviTermin);
-        //console.log(noviTermin);
     }
 
     useEffect(async() => {

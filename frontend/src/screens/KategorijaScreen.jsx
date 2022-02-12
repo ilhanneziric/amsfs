@@ -10,7 +10,7 @@ import kratkaZ from '../icons/zenskeFrizure/kratkaZ.png';
 import srednjaZ from '../icons/zenskeFrizure/srednjaZ.png';
 import dugaZ from '../icons/zenskeFrizure/dugaZ.png';
 
-import { useSelector, useDispatch} from 'react-redux';
+import {  useDispatch} from 'react-redux';
 import { useEffect } from "react";
 import { updateUrlParams } from "../redux/actions/urlParamsActions";
 

@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router';
 import { useState, useEffect, useRef} from "react";
 import axios from "axios";
-import { useSelector, useDispatch} from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { updateUrlParams } from "../redux/actions/urlParamsActions";
 import { updNapomena } from '../redux/actions/napomenaActions';
 
@@ -65,7 +65,6 @@ const UnosScreen = () => {
                         <div className="jedaninput">
                             <label htmlFor="napomena" className="userlbl">Napomena: (nije obavezno)</label>
                             <textarea {...register("napomena", { validate: (value) => value === value})} className="userinput"/>
-                                {/* {errors.napomena && <p>Morate unijeti broj telefona</p>} */}
                         </div>
                         <input type="submit" className="userbtn" value={"DALJE"}/>
                         

@@ -1,7 +1,6 @@
 import './styles/wizard.scss';
 import { Link } from "react-router-dom"
-import { useSelector, useDispatch} from 'react-redux';
-import { updateUrlParams } from "../redux/actions/urlParamsActions";
+import { useSelector} from 'react-redux';
 
 const Wizard = () => {
   const urlParams = useSelector(state => state.urlParams);

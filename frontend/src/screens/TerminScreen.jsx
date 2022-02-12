@@ -3,9 +3,9 @@ import NatragBtn from "../components/NatragBtn";
 import Wizard from "../components/Wizard";
 
 import TerminKartica from "../components/TerminKartica";
-import { useState, useEffect, useRef} from "react";
+import { useState, useEffect} from "react";
 import axios from "axios";
-import { useSelector, useDispatch} from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { updateUrlParams } from "../redux/actions/urlParamsActions";
 const {poredjenjeTermina} = require('../funkcije');
 
@@ -95,7 +95,6 @@ const TerminScreen = () => {
         setPTretmani(praviTermini);
     }
 
-    console.log(ptretmani);
     return (
         <div className="body">
 
