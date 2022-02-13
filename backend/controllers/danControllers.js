@@ -1,4 +1,3 @@
-const { aggregate } = require('../models/Dan');
 const Dan = require('../models/Dan');
 
 const getAllDani = async (req,res) => {

@@ -7,6 +7,7 @@ import Wizard from "../components/Wizard";
 import { Modal } from 'react-bootstrap';
 import { useSelector, useDispatch} from 'react-redux';
 import { updateUrlParams } from "../redux/actions/urlParamsActions";
+import socket from '../Socket.js'
 
 const PotvrdaScreen = () => {
     const params = useParams();
@@ -15,8 +16,7 @@ const PotvrdaScreen = () => {
     const [mjesec, setMjesec] = useState({});
     const [spol, setSpol] = useState('');
     const napomena = useSelector(state => state.napomena);
-    
-    
+        
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
 
@@ -34,6 +34,7 @@ const PotvrdaScreen = () => {
         };
         const  posalji = async (obj) => {
             const response = await axios.post('http://localhost:5000/api/termin/', obj);
+            socket.emit('posalji_zahtjev');
         }
         posalji(noviTermin);
     }

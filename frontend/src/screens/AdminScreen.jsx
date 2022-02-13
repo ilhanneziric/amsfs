@@ -8,9 +8,16 @@ import MjesecSwitcher from "../components/MjesecSwitcher";
 import AdminKalendar from "../components/AdminKalendar";
 import AdminTermini from "../components/AdminTermini";
 import '../components/styles/adminHome.scss';
+import socket from '../Socket.js'
 
-
+import sound from '../zvukovi/drugizvuk.wav'
 const AdminScreen = () => {
+
+    function playSound(url) {
+        const audio = new Audio(url);
+        audio.play();
+      }
+
     const datum = new Date();
     const datumce = {
         broj: datum.getMonth() + 1,
@@ -22,12 +29,13 @@ const AdminScreen = () => {
     const [lijevo,setLijevo] = useState({});
     const [desno, setDesno] = useState();
     const [termini, setTermini] = useState(null);
+    const [ntermini, setNTermini] = useState([]);
     const [cekiran, setCekiran] = useState(false);
 
     const adminDan = useSelector(state => state.adminDan);
 
     useEffect(async () => {
-        const result = await axios(`http://localhost:5000/api/termin/dan/${adminDan}`);
+        const result = await axios(`http://localhost:5000/api/termin/dan/prihvaceni/${adminDan}`);
         setTermini(result.data);
     }, [adminDan]);
 
@@ -43,6 +51,12 @@ const AdminScreen = () => {
         const result = await axios(`http://localhost:5000/api/mjesec/${datumce.broj}/${datumce.godina}`);
         setMjesec(result.data);
         setujDane(result.data._id);
+        setNeprihvacene();
+        socket.emit('register_admin', 'admin');
+        socket.on('prihvati_zahtjev', () => {
+            playSound(sound)
+            setNeprihvacene();
+        });
     }, []);
 
     const setujDane = async(id) => {
@@ -94,6 +108,22 @@ const AdminScreen = () => {
             }
         }
     }
+
+    const setNeprihvacene = async() => {
+        const resultt = await axios(`http://localhost:5000/api/termin/neprihvaceni`);
+        setNTermini(resultt.data);
+    }
+
+    const izbrisiZahtjev = async(id) => {
+        const result = await axios.delete(`http://localhost:5000/api/termin/${id}`);
+        await setNeprihvacene();
+      }
+    
+      const prihvatiZahtjev = async(termince) => {
+        termince.isPrihvacen = 'true';
+        const result = await axios.patch(`http://localhost:5000/api/termin/${termince._id}`, termince);
+        await setNeprihvacene();
+      }
     return( 
     <div className="adminHomePage">
         <div className="AdminDugmiciFullWidth">
@@ -105,6 +135,13 @@ const AdminScreen = () => {
         <div className="lijevoKalendar">
             <MjesecSwitcher lijevo={lijevo} desno={desno} mjesec={mjesec} setujDesno={setujDesno} setujLijevo={setujLijevo}/>
             <AdminKalendar prosli={prosliMjesec} sadasnji={dani} buduci={buduciMjesec} diskriminator = {1}/>
+            <div className="neprihvaceniTermini">
+                <div className='statistikaTabelaLabel'>ZAHTJEVI ZA REZERVISANJE:</div> 
+                {
+                    ntermini !== null && ntermini.length !== undefined &&
+                    ntermini.map((d, index)=>(<AdminTermini key={index} termin={d} izbrisiZahtjev={izbrisiZahtjev} prihvatiZahtjev={prihvatiZahtjev} diskriminator={2}/>))                
+                }
+            </div>
         </div>
         <div className="desnoTermini">
 
@@ -119,7 +156,7 @@ const AdminScreen = () => {
             <div className="adminTerminiBlok">
             {
                adminDan !== '' && termini !== null && termini.length !== undefined &&
-               termini.map((d, index)=>(<AdminTermini key={index} tretmanID={d.tretman} ime={d.ime} sat={d.sat} minuta={d.minuta}/>))                
+               termini.map((d, index)=>(<AdminTermini key={index} termin={d} diskriminator={1}/>))                
             }
             </div>
             

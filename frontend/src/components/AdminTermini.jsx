@@ -2,21 +2,29 @@ import '../components/styles/adminHome.scss';
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
-const AdminKalendar = ({ime, tretmanID, sat, minuta}) => {
+const AdminKalendar = ({termin, diskriminator, izbrisiZahtjev, prihvatiZahtjev}) => {
   const [tretman, setTretman] = useState();
   useEffect(async() => {
-    const result = await axios(`http://localhost:5000/api/tretman/${tretmanID}`);
+    const result = await axios(`http://localhost:5000/api/tretman/${termin.tretman}`);
     setTretman(result.data);
-  }, [])
+  }, []);
+
   return (
     <div className='bodyAdminTerminKartice'>
         <div className="lijevoAdmin">
-            <div className="imeMusterije">{ime}</div>
+            <div className="imeMusterije">{termin.ime}</div>
             {
                 tretman !== undefined && <div className="nazivTretmana">{tretman.naslov}</div>
             }
         </div>
-        <div className="desnoAdmin">{sat}:{minuta == "0" ? "00" : minuta}</div>
+        {
+          diskriminator === 1?
+          <div className="desnoAdmin">{termin.sat}:{termin.minuta == "0" ? "00" : termin.minuta}</div>:
+          <div className='desnoAdminStrihiri'>
+            <div className='strihir' onClick={() => prihvatiZahtjev(termin)}>&#10003;</div>
+            <div className='strihir' onClick={() => izbrisiZahtjev(termin._id)}>&#10007;</div>
+          </div>
+        }
     </div>
   );
 };

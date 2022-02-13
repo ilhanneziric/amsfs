@@ -1,6 +1,6 @@
-
 import './App.scss';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
+
 
 //screens
 import SpolScreen from './screens/SpolScreen';
@@ -17,7 +17,6 @@ import './components/styles/sve.scss'
 
 //components
 import Header from './components/Header';
-
 
 function App() {
   return (

@@ -315,3 +315,29 @@
 .userAdmininput:focus{
     border: 3px solid $lightBlue;
 }
+
+.neprihvaceniTermini{
+    border-top: 1px solid grey;
+    padding-top: 20px;
+}
+
+.desnoAdminStrihiri{
+    width: 9%;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: $lightDarkBlue;
+    margin-left: 1%;
+}
+
+.strihir{
+    margin: 2px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.strihir:hover{
+    background-color: $lightBlue;
+}

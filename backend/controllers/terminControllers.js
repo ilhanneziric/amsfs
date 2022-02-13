@@ -1,9 +1,26 @@
-const bodyParser = require('body-parser');
 const Termin = require('../models/Termin');
 
 const getAllTermine =  async (req,res) => {
     try {
         const termini = await Termin.find();
+        res.json(termini);
+    } catch (err) {
+        res.json({message: err.message});
+    }
+};
+
+const getAllPTermine =  async (req,res) => {
+    try {
+        const termini = await Termin.find({isPrihvacen: 'true'});
+        res.json(termini);
+    } catch (err) {
+        res.json({message: err.message});
+    }
+};
+
+const getAllNTermine =  async (req,res) => {
+    try {
+        const termini = await Termin.find({isPrihvacen: 'false'});
         res.json(termini);
     } catch (err) {
         res.json({message: err.message});
@@ -22,6 +39,15 @@ const getOneTermin = async (req,res) => {
 const getAllTerminiInDan = async (req,res) => {
     try {
         const termini = await Termin.find({dan: req.params.danid}).sort({sat:1, minuta:1});
+        res.json(termini);
+    } catch (err) {
+        res.json({message: err.message});
+    }
+};
+
+const getAllPTerminiInDan = async (req,res) => {
+    try {
+        const termini = await Termin.find({dan: req.params.danid, isPrihvacen: 'true'}).sort({sat:1, minuta:1});
         res.json(termini);
     } catch (err) {
         res.json({message: err.message});
@@ -78,8 +104,11 @@ const updateTermin =  async (req,res) => {
 
 module.exports = {
     getAllTermine,
+    getAllPTermine,
+    getAllNTermine,
     getOneTermin,
     getAllTerminiInDan,
+    getAllPTerminiInDan,
     addTermin,
     deleteTermin,
     updateTermin
