@@ -11,6 +11,8 @@ import '../components/styles/adminHome.scss';
 import socket from '../Socket.js'
 import { Modal } from 'react-bootstrap';
 import sound from '../zvukovi/drugizvuk.wav';
+import statistikaIcon from '../icons/statistika2.png';
+import tretmanIcon from '../icons/tretmani.png';
 const {getTretmanKategorijaName} = require('../funkcije');
 
 const AdminScreen = () => {
@@ -145,10 +147,10 @@ const AdminScreen = () => {
     return( 
     <div className="adminHomePage">
         <div className="AdminDugmiciFullWidth">
-            <Link to='/admin/statistika'><div className="adminDugme">STATISTIKA<FaArrowRight className="faAdminStrelica"/></div></Link>
+            <Link to='/admin/statistika'><div className="adminDugme"><img src={statistikaIcon} className="ikonicaStatistikaTretman"/>STATISTIKA<FaArrowRight className="faAdminStrelica"/></div></Link>
         </div>
         <div className="AdminDugmiciFullWidth">
-        <Link to='/admin/tretmani'><div className="adminDugme">TRETMANI<FaArrowRight className="faAdminStrelica"/></div></Link>
+        <Link to='/admin/tretmani'><div className="adminDugme"><img src={tretmanIcon} className="ikonicaStatistikaTretman"/>TRETMANI<FaArrowRight className="faAdminStrelica"/></div></Link>
         </div>
         <div className="lijevoKalendar">
             <MjesecSwitcher lijevo={lijevo} desno={desno} mjesec={mjesec} setujDesno={setujDesno} setujLijevo={setujLijevo}/>

@@ -48,7 +48,11 @@ const KalendarScreen = () => {
 
     let prosliMjesec = [];
     for (let i = 0; i < mjesec.pocetniDan; i++) {
-        prosliMjesec.push({broj: 31-i, disabled: "true"});
+        if(mjesec.broj === 1){
+            prosliMjesec.push({broj: (new Date(mjesec.godina - 1, 12, 0).getDate())-i, disabled: "true"});
+        }else{
+            prosliMjesec.push({broj: (new Date(mjesec.godina, mjesec.broj - 1, 0).getDate())-i, disabled: "true"});
+        }
     }
     prosliMjesec = prosliMjesec.reverse();
 
@@ -65,7 +69,6 @@ const KalendarScreen = () => {
         setMjesec(desno);
         setujDane(desno._id);
     };
-    
     return (
         <div className="body">
             <div className="naslov">

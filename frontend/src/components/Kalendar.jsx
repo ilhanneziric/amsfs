@@ -36,18 +36,23 @@ const Kalendar = ( {prosli, sadasnji, buduci}) => {
                 }
                 {
                     mjesec.broj < datumce.trenutniMjesec?
-
-                    sadasnji.map((d) => (
-                        <DanKartica key={d._id} broj={d.broj} disabled={'true'} neaktuelni="false"/>
-                    )):
-
-                    sadasnji.map((d) => (
-                        d.broj <= datumce.trenutniDan?
-                        <DanKartica key={d._id} broj={d.broj} disabled={'true'} neaktuelni="false"/>:
-                        d.disabled === "true" ? 
-                        <DanKartica key={d._id} broj={d.broj} disabled={d.disabled} neaktuelni="false"/>:
-                        <Link to={`/termin/${d._id}/${params.tretmanid}`} key={d._id}><DanKartica broj={d.broj} disabled={d.disabled} neaktuelni="false"/></Link>
-                    ))
+                        sadasnji.map((d) => (
+                            <DanKartica key={d._id} broj={d.broj} disabled={'true'} neaktuelni="false"/>
+                        )):
+                        mjesec.broj > datumce.trenutniMjesec?
+                            sadasnji.map((d) => (
+                                d.disabled === "true" ? 
+                                    <DanKartica key={d._id} broj={d.broj} disabled={d.disabled} neaktuelni="false"/>:
+                                    <Link to={`/termin/${d._id}/${params.tretmanid}`} key={d._id}><DanKartica broj={d.broj} disabled={d.disabled} neaktuelni="false"/></Link>
+                            )):
+                            sadasnji.map((d) => (
+                                d.broj <= datumce.trenutniDan?
+                                    <DanKartica key={d._id} broj={d.broj} disabled={'true'} neaktuelni="false"/>:
+                                    d.disabled === "true" ? 
+                                        <DanKartica key={d._id} broj={d.broj} disabled={d.disabled} neaktuelni="false"/>:
+                                        <Link to={`/termin/${d._id}/${params.tretmanid}`} key={d._id}><DanKartica broj={d.broj} disabled={d.disabled} neaktuelni="false"/></Link>
+                            ))
+                            
                 }
                 {
                     buduci.map((d, index)=>(<DanKartica key={index + 10000} broj={d.broj} disabled={d.disabled} neaktuelni="true"/>))

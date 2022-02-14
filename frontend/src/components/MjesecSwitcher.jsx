@@ -1,5 +1,4 @@
 import './styles/mjesecSwitcher.scss';
-import { useParams } from "react-router-dom"
 
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
@@ -8,8 +7,6 @@ const {getMonthName} = require('../funkcije');
 
 const MjesecSwitcher = ({lijevo, desno, mjesec, setujLijevo, setujDesno}) => {
     
-    const params = useParams();
-
     return (
         <div className='bodySwitcher'>
             {
