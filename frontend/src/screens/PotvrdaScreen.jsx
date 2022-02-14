@@ -8,6 +8,7 @@ import { Modal } from 'react-bootstrap';
 import { useSelector, useDispatch} from 'react-redux';
 import { updateUrlParams } from "../redux/actions/urlParamsActions";
 import socket from '../Socket.js'
+const {getTretmanKategorijaName} = require('../funkcije');
 
 const PotvrdaScreen = () => {
     const params = useParams();
@@ -91,6 +92,7 @@ const PotvrdaScreen = () => {
                     <p className="potvrdaItem"><b>Cijena tretmana:</b> {tretman.cijena}KM</p>
                     <p className="potvrdaItem"><b>Ime i prezime:</b> {params.ime}</p>
                     <p className="potvrdaItem"><b>Telefon:</b> {params.telefon}</p>
+                    <p className="potvrdaItem"><b>Kategorija:</b> {getTretmanKategorijaName(tretman.kategorija)}</p>
                     {napomena !== '' && <p className="potvrdaItem"><b>Napomena:</b> {napomena}</p> }         
                     <div onClick={() => potvrda()} className="userpotvrdabtn">POTVRDI</div>
                 </div>

@@ -9,20 +9,28 @@ import AdminKalendar from "../components/AdminKalendar";
 import AdminTermini from "../components/AdminTermini";
 import '../components/styles/adminHome.scss';
 import socket from '../Socket.js'
+import { Modal } from 'react-bootstrap';
+import sound from '../zvukovi/drugizvuk.wav';
+const {getTretmanKategorijaName} = require('../funkcije');
 
-import sound from '../zvukovi/drugizvuk.wav'
 const AdminScreen = () => {
 
     function playSound(url) {
         const audio = new Audio(url);
         audio.play();
-      }
+    }
 
     const datum = new Date();
     const datumce = {
         broj: datum.getMonth() + 1,
         godina: datum.getFullYear()
     };
+
+    const [odabraniTretman, setOdabraniTretman] = useState({});
+    const [odabraniTermin, setOdabraniTermin] = useState({});
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
 
     const [mjesec, setMjesec] = useState({});
     const [dani,setDani] = useState([]);
@@ -112,18 +120,28 @@ const AdminScreen = () => {
     const setNeprihvacene = async() => {
         const resultt = await axios(`http://localhost:5000/api/termin/neprihvaceni`);
         setNTermini(resultt.data);
+        const result = await axios(`http://localhost:5000/api/termin/dan/prihvaceni/${adminDan}`);
+        setTermini(result.data);
     }
 
     const izbrisiZahtjev = async(id) => {
         const result = await axios.delete(`http://localhost:5000/api/termin/${id}`);
         await setNeprihvacene();
-      }
+    }
     
-      const prihvatiZahtjev = async(termince) => {
+    const prihvatiZahtjev = async(termince) => {
         termince.isPrihvacen = 'true';
         const result = await axios.patch(`http://localhost:5000/api/termin/${termince._id}`, termince);
         await setNeprihvacene();
-      }
+    }
+
+    const otvoriModal = async(terminn) => {
+        setOdabraniTermin(terminn);
+        const result = await axios(`http://localhost:5000/api/tretman/${terminn.tretman}`);
+        setOdabraniTretman(result.data);
+        setShow(true);
+    }
+    
     return( 
     <div className="adminHomePage">
         <div className="AdminDugmiciFullWidth">
@@ -139,7 +157,7 @@ const AdminScreen = () => {
                 <div className='statistikaTabelaLabel'>ZAHTJEVI ZA REZERVISANJE:</div> 
                 {
                     ntermini !== null && ntermini.length !== undefined &&
-                    ntermini.map((d, index)=>(<AdminTermini key={index} termin={d} izbrisiZahtjev={izbrisiZahtjev} prihvatiZahtjev={prihvatiZahtjev} diskriminator={2}/>))                
+                    ntermini.map((d, index)=>(<AdminTermini key={index} termin={d} izbrisiZahtjev={izbrisiZahtjev} otvoriModal={otvoriModal} prihvatiZahtjev={prihvatiZahtjev} diskriminator={2}/>))                
                 }
             </div>
         </div>
@@ -156,11 +174,42 @@ const AdminScreen = () => {
             <div className="adminTerminiBlok">
             {
                adminDan !== '' && termini !== null && termini.length !== undefined &&
-               termini.map((d, index)=>(<AdminTermini key={index} termin={d} diskriminator={1}/>))                
+               termini.map((d, index)=>(<AdminTermini key={index} termin={d} diskriminator={1}  otvoriModal={otvoriModal} izbrisiZahtjev={izbrisiZahtjev} prihvatiZahtjev={prihvatiZahtjev}/>))                
             }
             </div>
             
         </div>
+        <Modal show={show} onHide={handleClose} backdrop="static" centered={true}>
+              <Modal.Header>
+                  {/* <Modal.Title>Ovo je naslov</Modal.Title> */}
+              </Modal.Header>
+              <div className="modalBody">
+                  {
+                      odabraniTermin.ime !== undefined && odabraniTretman.naslov !== undefined?
+                        <>
+                            <p className="potvrdaItemModal"><b>Ime i prezime:</b> {odabraniTermin.ime}</p>
+                            <p className="potvrdaItemModal"><b>Telefon:</b> {odabraniTermin.telefon}</p>
+                            <p className="potvrdaItemModal"><b>Vrijeme:</b> {odabraniTermin.sat}:{odabraniTermin.minuta === "0" ? "00" : odabraniTermin.minuta}</p>
+                            {odabraniTermin.napomena !== '' && <p className="potvrdaItemModal"><b>Napomena:</b> {odabraniTermin.napomena}</p> } 
+
+                            <p className="potvrdaItemModal"><b>Tretman:</b> {odabraniTretman.naslov}</p>
+                            {odabraniTretman.opis !== '' && <p className="potvrdaItemModal"><b>Opis tretmana:</b> {odabraniTretman.opis}</p> }
+                            {
+                                odabraniTretman.trajanje >= 60?
+                                odabraniTretman.trajanje % 60 === 0 ?
+                                    <p className="potvrdaItemModal"><b>Trajanje tretmana:</b> {Math.floor(odabraniTretman.trajanje/60)}h</p>:
+                                    <p className="potvrdaItemModal"><b>Trajanje tretmana:</b> {Math.floor(odabraniTretman.trajanje/60)}h {odabraniTretman.trajanje%60}min</p>:
+                                <p className="potvrdaItemModal"><b>Trajanje tretmana:</b> {odabraniTretman.trajanje}min</p>
+                            }
+                            <p className="potvrdaItemModal"><b>Cijena tretmana:</b> {odabraniTretman.cijena}KM</p>
+                            <p className="potvrdaItemModal"><b>Kategorija:</b> {getTretmanKategorijaName(odabraniTretman.kategorija)}</p>
+                        </>:''
+                  }
+              </div>
+              <Modal.Footer className="modalFooter">
+                  <div className="usermodalbtn" onClick={() => setShow(false)}>OK</div>
+              </Modal.Footer>
+        </Modal>
     </div>);
 };
 
