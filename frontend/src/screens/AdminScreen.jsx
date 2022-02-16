@@ -120,10 +120,10 @@ const AdminScreen = () => {
     }
 
     const setNeprihvacene = async() => {
-        const resultt = await axios(`http://localhost:5000/api/termin/neprihvaceni`);
-        setNTermini(resultt.data);
         const result = await axios(`http://localhost:5000/api/termin/dan/prihvaceni/${adminDan}`);
         setTermini(result.data);
+        const resultt = await axios(`http://localhost:5000/api/termin/neprihvaceni`);
+        setNTermini(resultt.data);
     }
 
     const izbrisiZahtjev = async(id) => {

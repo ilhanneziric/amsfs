@@ -15,7 +15,6 @@ const PotvrdaScreen = () => {
     const [dan, setDan] = useState({});
     const [tretman, setTretman] = useState({});
     const [mjesec, setMjesec] = useState({});
-    const [spol, setSpol] = useState('');
     const napomena = useSelector(state => state.napomena);
         
     const [show, setShow] = useState(false);
@@ -54,10 +53,9 @@ const PotvrdaScreen = () => {
 
     const dispatch = useDispatch();
     useEffect(() => {
-        setSpol(tretman.kategorija === "kz" || tretman.kategorija === "sz" || tretman.kategorija === "dz" ? 'zensko': 'musko');
         dispatch(updateUrlParams({ 
             id: 7, 
-            spol: spol, 
+            spol: (tretman.kategorija === "kz" || tretman.kategorija === "sz" || tretman.kategorija === "dz" ? 'zensko': 'musko'), 
             kategorija: tretman.kategorija, 
             tretmanid: params.tretmanid, 
             danid: params.danid, 

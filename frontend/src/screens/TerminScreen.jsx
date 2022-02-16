@@ -17,23 +17,30 @@ const TerminScreen = () => {
     let sviTermini = [];
     let tretmani = [];
     let reverseTermini = [];
+    let nizID = [];
     let bezZauzetihTermina = [];
     let praviTermini = [];
     const [ptretmani, setPTretmani] = useState([]);
-    const [spol, setSpol] = useState('');
 
     const dispatch = useDispatch();
-    useEffect(() => {
-        setSpol(tretman.kategorija === "kz" || tretman.kategorija === "sz" || tretman.kategorija === "dz" ? 'zensko': 'musko');
-        dispatch(updateUrlParams({ id: 5, spol: spol, kategorija: tretman.kategorija, tretmanid: params.tretmanid, danid: params.danid, minuta:"", sat:"", ime:"", telefon:""}));
-    }, [tretman]);
 
     useEffect(async () => {
         const result = await axios(`http://localhost:5000/api/termin/dan/${params.danid}`);
-        setZTermini(result.data);
+        const finaly = setujZadnjiTermin(await result.data);
+        setZTermini(finaly);
         const resultt = await axios(`http://localhost:5000/api/tretman/${params.tretmanid}`);
         setTretman(resultt.data);
     }, []);
+
+    const setujZadnjiTermin = (data) => {
+        data.push({
+            sat: 22,
+            minuta: 0,
+            tretman: '61e05fc80709c252560b8e05'
+        });
+        return data;
+    }
+
     useEffect(async() => {
         for (let i = 0; i < ztermini.length; i++) {
             
@@ -41,6 +48,7 @@ const TerminScreen = () => {
             tretmani.push(resultt.data);
         }
         setSveTermine(tretman.trajanje/10);
+        dispatch(updateUrlParams({ id: 5, spol: (tretman.kategorija === "kz" || tretman.kategorija === "sz" || tretman.kategorija === "dz" ? 'zensko': 'musko'), kategorija: tretman.kategorija, tretmanid: params.tretmanid, danid: params.danid, minuta:"", sat:"", ime:"", telefon:""}));
     }, [ztermini, tretman]);
 
     const setSveTermine = (trajanjTermina) => {
@@ -49,9 +57,37 @@ const TerminScreen = () => {
                 sviTermini.push({sat: i, minuta: j});
             }
         }
+        sviTermini.push({sat: 22, minuta:0})
         setReverseTermine(trajanjTermina);
         setSveTermineBezZauzetih();
         setpraviTermini();
+    }
+
+    const setReverseTermine = (trajanje) => {
+        reverseTermini = sviTermini.slice();
+        reverseTermini.reverse();
+        if(trajanje > -1){
+            for (let k = 0; k < reverseTermini.length; k++) {
+                for (let z = 0; z < ztermini.length; z++) {
+                    if(poredjenjeTermina(reverseTermini[k], ztermini[z])){
+                        let pomocniNiz = [...reverseTermini];
+                        nizID.push([...pomocniNiz.splice(k, trajanje)]);
+                    }                
+                }            
+            }   
+            for (let x = 0; x < reverseTermini.length; x++) {
+                for (let y = 0; y < nizID.length; y++) {
+                    for (let z = 0; z < nizID[y].length; z++) {
+                        // if(poredjenjeTermina(reverseTermini[x], nizID[y][z])){
+                        //     reverseTermini.splice(x,1);
+                        // }
+                        reverseTermini = reverseTermini.filter(ter => !(poredjenjeTermina(ter, nizID[y][z])));
+                    }                    
+                }                
+            }
+            // console.log(reverseTermini);
+        }
+        reverseTermini.reverse();
     }
 
     const setSveTermineBezZauzetih = () => {
@@ -65,23 +101,6 @@ const TerminScreen = () => {
                 }                
             }            
         }
-    }
-
-    const setReverseTermine = (trajanje) => {
-        reverseTermini = sviTermini.slice();
-        reverseTermini.reverse();
-        if(trajanje > -1){
-            for (let k = 0; k < reverseTermini.length; k++) {
-                for (let z = 0; z < ztermini.length; z++) {
-                    if(poredjenjeTermina(reverseTermini[k], ztermini[z])){
-                        reverseTermini.splice(k, trajanje);
-                        z=ztermini.length;
-                        k=-1;
-                    }                
-                }            
-            }   
-        }
-        reverseTermini.reverse();
     }
 
     const setpraviTermini = () => {

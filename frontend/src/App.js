@@ -1,6 +1,6 @@
 import './App.scss';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-
+import { useEffect } from 'react';
 
 //screens
 import SpolScreen from './screens/SpolScreen';
@@ -19,6 +19,9 @@ import './components/styles/sve.scss'
 import Header from './components/Header';
 
 function App() {
+  useEffect(() => {
+    document.title = "AMSFS"
+  }, []);
   return (
     <BrowserRouter>
       <Header/>

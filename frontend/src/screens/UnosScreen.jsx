@@ -15,7 +15,6 @@ const UnosScreen = () => {
     const {register, handleSubmit, formState: { errors }} = useForm();
     let navigate = useNavigate();
     const [tretman,setTretman] = useState({});
-    const [spol, setSpol] = useState('');
 
     useEffect(async () => {
         const resultt = await axios(`http://localhost:5000/api/tretman/${params.tretmanid}`);
@@ -24,10 +23,9 @@ const UnosScreen = () => {
 
     const dispatch = useDispatch();
     useEffect(() => {
-        setSpol(tretman.kategorija === "kz" || tretman.kategorija === "sz" || tretman.kategorija === "dz" ? 'zensko': 'musko');
         dispatch(
             updateUrlParams(
-                { id: 6, spol: spol, kategorija: tretman.kategorija, tretmanid: params.tretmanid, danid: params.danid, minuta: params.minuta, sat: params.sat, ime:"", telefon:""}
+                { id: 6, spol: (tretman.kategorija === "kz" || tretman.kategorija === "sz" || tretman.kategorija === "dz" ? 'zensko': 'musko'), kategorija: tretman.kategorija, tretmanid: params.tretmanid, danid: params.danid, minuta: params.minuta, sat: params.sat, ime:"", telefon:""}
                 ));
     }, [tretman]);
 
