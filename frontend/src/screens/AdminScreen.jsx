@@ -29,6 +29,8 @@ const AdminScreen = () => {
     };
 
     const [odabraniTretman, setOdabraniTretman] = useState({});
+    const [odabraniDan, setOdabraniDan] = useState({});
+    const [odabraniMjesec, setOdabraniMjesec] = useState({});
     const [odabraniTermin, setOdabraniTermin] = useState({});
 
     const [show, setShow] = useState(false);
@@ -141,6 +143,10 @@ const AdminScreen = () => {
         setOdabraniTermin(terminn);
         const result = await axios(`http://localhost:5000/api/tretman/${terminn.tretman}`);
         setOdabraniTretman(result.data);
+        const resultt = await axios(`http://localhost:5000/api/dan/${terminn.dan}`);
+        setOdabraniDan(resultt.data);
+        const resulttt = await axios(`http://localhost:5000/api/mjesec/${resultt.data.mjesec}`);
+        setOdabraniMjesec(resulttt.data);
         setShow(true);
     }
     
@@ -191,7 +197,8 @@ const AdminScreen = () => {
                         <>
                             <p className="potvrdaItemModal"><b>Ime i prezime:</b> {odabraniTermin.ime}</p>
                             <p className="potvrdaItemModal"><b>Telefon:</b> {odabraniTermin.telefon}</p>
-                            <p className="potvrdaItemModal"><b>Vrijeme:</b> {odabraniTermin.sat}:{odabraniTermin.minuta === "0" ? "00" : odabraniTermin.minuta}</p>
+                            <p className="potvrdaItemModal"><b>Vrijeme:</b> {odabraniTermin.sat}:{odabraniTermin.minuta == "0" ? "00" : odabraniTermin.minuta}</p>
+                            <p className="potvrdaItemModal"><b>Datum:</b> {odabraniDan.broj}.{odabraniMjesec.broj}.{odabraniMjesec.godina}.</p>
                             {odabraniTermin.napomena !== '' && <p className="potvrdaItemModal"><b>Napomena:</b> {odabraniTermin.napomena}</p> } 
 
                             <p className="potvrdaItemModal"><b>Tretman:</b> {odabraniTretman.naslov}</p>

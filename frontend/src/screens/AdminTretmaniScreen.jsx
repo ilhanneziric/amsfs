@@ -85,7 +85,7 @@ const AdminTretmaniScreen = () => {
                   </select>                  
               </div>
 
-              <input type="submit" className="userbtn" value={"DALJE"}/>
+              <input type="submit" className="userbtn" value={"DODAJ"}/>
 
             </form>
             </div>
