@@ -25,6 +25,8 @@ app.use('/api/dan', danRoutes);
 app.use('/api/tretman', tretmanRoutes);
 app.use('/api/termin', terminRoutes);
 
+const PORT = process.env.PORT || 5000;
+
 const server = http.createServer(app);
 
 const io = new Server(server, {
@@ -36,23 +38,21 @@ const io = new Server(server, {
 
 io.on('connection', (socket) => {
     // console.log('user connected: ' + socket.id);
-    
+
     socket.on('posalji_zahtjev', () => {
         // console.log('stigao zahtjev');
         socket.to('admin').emit('prihvati_zahtjev');
     });
-    
+
     socket.on('register_admin', (data) => {
         socket.join(data);
         // console.log(`user with ID: ${socket.id} register as admin key: ${data}`);
     });
-    
+
     socket.on('disconnect', () => {
         // console.log('user disconnected: ', socket.id);
     });
 });
-
-const PORT = process.env.PORT || 5000;
 
 server.listen(PORT, ()=>console.log(`Server runing on PORT: ${PORT}`));
 
