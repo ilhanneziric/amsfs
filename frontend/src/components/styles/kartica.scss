@@ -1,0 +1,33 @@
+@import './colors';
+
+.bodyKartica{
+    width: 400px;
+    padding: 2.5rem 0 2.5rem 0;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border: 4px solid $lightBlue;
+    border-radius: 15%;
+    transition: transform 0.5s, background-color 0.5s, box-shadow 0.5s;
+}
+
+.ikonica{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.naslovKartice{
+    font-size: 2rem;
+    color: $lightDarkBlue;
+}
+
+.bodyKartica:hover{
+    background-color: $lightBlue;
+    transform: scale(1.1);
+    
+    box-shadow: 0px 0px 40px -11px rgba(0,0,0,0.86);
+    -webkit-box-shadow: 0px 0px 40px -11px rgba(0,0,0,0.86);
+    -moz-box-shadow: 0px 0px 40px -11px rgba(0,0,0,0.86);
+}

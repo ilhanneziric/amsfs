@@ -1,0 +1,39 @@
+@import './colors';
+
+@mixin bodyDan($bordercic, $colorcic) {
+    margin: 2px;
+    // width: 67.8px;
+    // height: 67.8px;
+    width: 98.7px;
+    height: 98.7px;
+    text-align: center;
+    font-size: 1.8rem;
+    border-radius: 15%;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    border: $bordercic;
+    color: $colorcic;
+}
+
+.bodyDanUnDisabled{
+    @include bodyDan(4px solid $lightBlue, $lightDarkBlue);
+    transition: transform 0.2s;
+}
+
+.bodyDanDisabled{
+    @include bodyDan(4px solid $disableBlue, $disableBlue);
+}
+
+.bodyDanDisabledNeAktualni{
+    @include bodyDan(4px solid $grey, $grey);
+}
+
+.bodyDanUnDisabled:hover{
+    background-color: $lightBlue;
+    transform: scale(1.1);
+}
+
+.bodyDanDisabled:hover, .bodyDanDisabledNeAktualni:hover{
+    cursor: not-allowed;
+}

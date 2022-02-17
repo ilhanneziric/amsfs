@@ -1,0 +1,349 @@
+@import './colors';
+
+.adminHomePage{
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.lijevoKalendar{
+    padding: 1rem;
+    display: inline-block;
+    width: 35%;
+    border-right: 1px solid grey;
+    border-top: 1px solid grey;
+}
+
+.desnoTermini{
+    border-top: 1px solid grey;
+    padding: 1rem 3rem;
+
+    display: inline-block;
+    width: 65%;
+}
+
+.adminTerminiBlok{
+    margin-top: 10px;
+}
+
+.adminDan{
+    margin: 2px;
+    width: 54.9px;
+    height: 54.9px;
+    text-align: center;
+    font-size: 1.4rem;
+    border-radius: 15%;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    border: 4px solid $lightBlue;
+    color: $lightDarkBlue;
+}
+
+.nazivAdminDana{
+    margin: 2px;
+    width: 54.9px;
+    text-align: center;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    border: 4px solid $lightDarkBlue;
+    color: $lightDarkBlue;
+}
+
+.notThatMonth{
+    margin: 2px;
+    width: 54.9px;
+    height: 54.9px;
+    border: 4px solid transparent;
+    color: transparent;
+}
+
+.disabled{
+    border: 4px solid $grey;
+    color: $lightDarkBlue;
+}
+
+.adminDan:hover{
+    background-color: $lightBlue;
+    cursor: pointer;
+}
+
+.disabled:hover{
+    background-color: $grey;
+    cursor: pointer;
+}
+
+.adminDanAktivan{
+    background-color: $lightBlue;
+}
+
+.disabledAktivan{
+    background-color: $grey;
+}
+
+
+//termini
+.bodyAdminTerminKartice{
+    margin: 5px 0;
+    border: 4px solid $lightBlue;
+    background-color:  $lightBlue;
+    padding: 5px;
+    border-radius: 10px;
+    transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+    display: flex;
+}
+
+
+.lijevoAdmin{
+    width: 90%;
+    display: inline-block;
+    border-right: 2px solid $lightDarkBlue;
+}
+.desnoAdmin{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: $lightDarkBlue;
+}
+
+.imeMusterije{
+    display: inline-block;
+    width: 20%;
+    border-right: 2px solid $lightDarkBlue;
+
+}
+
+.nazivTretmana{
+    display: inline-block;
+    text-align: center;
+    width: 80%;
+}
+
+.bodyAdminTerminKartice:hover{
+    background-color: white;
+    transform: scaleX(1.02);
+
+    cursor: pointer;
+    box-shadow: 0px 0px 40px -11px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0px 0px 40px -11px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 0px 40px -11px rgba(0,0,0,0.2);
+}
+
+//switcher
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $grey;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: $lightBlue;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px $lightBlue;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .switcherLabel{
+      display: inline-block;
+      margin: 0;
+      margin-right: 10px;
+  }
+
+  .danSwitcher{
+    display: flex;
+    // justify-content: center;
+    // align-items: center;
+  }
+
+  //admin dugmici
+.adminDugme{
+    margin-bottom: 5px;
+    border: 4px solid $lightBlue;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: $lightBlue;
+    color: $lightDarkBlue;
+    transition: background-color 0.5s;
+    float: right;
+    display: block;
+}
+
+.faAdminStrelica{
+    font-size: 1.2rem;
+    padding: 2px;
+}
+
+.adminDugme:hover{
+    background-color: white;
+}
+
+.AdminDugmiciFullWidth{
+    width: 100%;
+}
+
+.statistikaNatragBtn{
+    float: left;
+    // margin: 3rem;
+}
+
+//admin tretman
+.adminTretmanBody{
+    border: 4px solid $lightBlue;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 15px;
+    background-color: $lightBlue;
+    transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+}
+
+.adminTretmanLijevo{
+    display: inline-block;
+    width: 85%;
+}
+
+.adminTretmanNaslov{
+    font-weight: 500;
+}
+
+.adminTretmanOpis{
+    font-size: 0.8rem;
+}
+.adminTretmanBezOpis{
+    color: transparent;
+    width: 3px;
+}
+
+.adminTretmanDesno{
+    border-left: 1px solid black;
+    float: right;
+    padding-left: 5px;
+    width: 15%;
+}
+
+.adminTretmanTrajanje{
+    display: inline-block;
+    margin-left: 5px;
+
+}
+.adminTretmanCijena{
+    padding-right: 5px;
+    border-right: 1px solid black;
+    display: inline-block;
+}
+
+.adminTretmanBody:hover{
+    background-color: white;
+    transform: scaleX(1.02);
+
+    cursor: pointer;
+    box-shadow: 0px 0px 40px -11px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0px 0px 40px -11px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 0px 40px -11px rgba(0,0,0,0.2);
+}
+
+.jedanAdminInput{
+    margin-bottom: 10px;
+}
+
+.userAdminlbl{
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.userAdmininput{
+    width: 400px;
+    padding: 5px;
+    outline: transparent;
+    border: 3px solid $lightDarkBlue;
+    border-color: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+}
+
+.userAdmininput:focus{
+    border: 3px solid $lightBlue;
+}
+
+.neprihvaceniTermini{
+    border-top: 1px solid grey;
+    padding-top: 20px;
+}
+
+.desnoAdminStrihiri{
+    width: 9%;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: $lightDarkBlue;
+    margin-left: 1%;
+}
+
+.strihir{
+    margin: 2px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.strihir:hover{
+    background-color: $lightBlue;
+}
+
+.ikonicaStatistikaTretman{
+    display: inline-block;
+    width: 40px;
+    padding-right: 2px;
+}

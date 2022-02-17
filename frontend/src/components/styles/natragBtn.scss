@@ -1,0 +1,23 @@
+@import './colors';
+
+.bodyBtn{
+    margin: 20px 0 30px 0;
+    border: 4px solid $lightBlue;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: $lightBlue;
+    color: $lightDarkBlue;
+    transition: background-color 0.5s;
+    float: left;
+    z-index: 1;
+    position:absolute;
+        
+}
+
+.fastrelica{
+    padding-right: 2px;
+}
+
+.bodyBtn:hover{
+    background-color: white;
+}
