@@ -1,9 +1,11 @@
-require('dotenv').config();
+// require('dotenv').config({ path: "..env" });
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const mongoose = require('mongoose');
 
 const connectDB = async () => {
     try {
-        await mongoose.connect("mongodb+srv://ilhan:123@cluster0.13amf.mongodb.net/amsfs?retryWrites=true&w=majority", {
+        await mongoose.connect(process.env.DB_URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         }, ()=> console.log("Connected to db!"));
