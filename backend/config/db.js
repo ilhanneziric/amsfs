@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(process.env.DB_URL, {
+        await mongoose.connect("mongodb+srv://ilhan:123@cluster0.13amf.mongodb.net/amsfs?retryWrites=true&w=majority", {
             useNewUrlParser: true,
             useUnifiedTopology: true
         }, ()=> console.log("Connected to db!"));
@@ -12,5 +12,7 @@ const connectDB = async () => {
         process.exit(1);
     }
 }
+
+
 
 module.exports = connectDB;
