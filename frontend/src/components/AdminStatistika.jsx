@@ -33,7 +33,7 @@ const AdminStatistika = () => {
     setTretmans([]);
     setZarada(0);
     for (let i = 0; i < tretmaniFreq.length; i++) {
-        const result = await axios(`http://localhost:5000/api/tretman/${tretmaniFreq[i].tretman}`);
+        const result = await axios(`https://amsfs.herokuapp.com/api/tretman/${tretmaniFreq[i].tretman}`);
         result.data.freq = tretmaniFreq[i].freq;
         setTretmans(proslo => [...proslo, result.data]);
         setZarada(stanje => stanje += result.data.cijena * result.data.freq);
