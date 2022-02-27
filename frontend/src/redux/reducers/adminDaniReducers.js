@@ -3,7 +3,6 @@ import * as actionTypes from '../actionTypes/adminDaniActionTypes';
 export const adminDaniReducer = (state = [], action) =>{
     switch(action.type){
         case(actionTypes.ADD_ADMIN_DANI):
-            // console.log(state);
             return state = [...state, action.payload];
 
         case(actionTypes.REMOVE_ADMIN_DANI):

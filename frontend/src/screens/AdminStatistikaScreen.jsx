@@ -22,20 +22,20 @@ const AdminStatistikaScreen = () => {
 
 
   useEffect(async () => {
-    const result = await axios(`http://localhost:5000/api/mjesec/${datumce.broj}/${datumce.godina}`);
+    const result = await axios(`https://amsfs.herokuapp.com/api/mjesec/${datumce.broj}/${datumce.godina}`);
     setMjesec(result.data);
     setujDane(result.data._id);
   }, []);
 
   const setujDane = async(id) => {
-    const rezultat = await axios(`http://localhost:5000/api/dan/mjesec/${id}`);
+    const rezultat = await axios(`https://amsfs.herokuapp.com/api/dan/mjesec/${id}`);
     setDani(rezultat.data);
   }
 
   useEffect(async () => {
-    const result = await axios(`http://localhost:5000/api/mjesec/${mjesec.broj === 12 ? Number(mjesec.broj - 11) : Number(mjesec.broj + 1)}/${mjesec.broj === 12 ? Number(mjesec.godina + 1) : Number(mjesec.godina)}`);
+    const result = await axios(`https://amsfs.herokuapp.com/api/mjesec/${mjesec.broj === 12 ? Number(mjesec.broj - 11) : Number(mjesec.broj + 1)}/${mjesec.broj === 12 ? Number(mjesec.godina + 1) : Number(mjesec.godina)}`);
     setDesno(result.data);
-    const rezultat = await axios(`http://localhost:5000/api/mjesec/${mjesec.broj === 1 ? Number(mjesec.broj + 11 ) : Number(mjesec.broj - 1)}/${mjesec.broj === 1 ? Number(mjesec.godina - 1) : Number(mjesec.godina)}`);
+    const rezultat = await axios(`https://amsfs.herokuapp.com/api/mjesec/${mjesec.broj === 1 ? Number(mjesec.broj + 11 ) : Number(mjesec.broj - 1)}/${mjesec.broj === 1 ? Number(mjesec.godina - 1) : Number(mjesec.godina)}`);
     setLijevo(rezultat.data);
   }, [mjesec]);
 
