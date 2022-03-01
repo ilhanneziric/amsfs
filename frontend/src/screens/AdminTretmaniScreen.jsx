@@ -57,7 +57,7 @@ const AdminTretmaniScreen = () => {
 
               <div className="jedanAdminInput">
                   <label htmlFor="opis" className="userAdminlbl">OPIS:</label>
-                  <textarea {...register("opis", { validate: (value) => value !== ""})} className="userAdmininput"/>
+                  <textarea {...register("opis", { validate: (value) => value === value})} className="userAdmininput"/>
                       {errors.opis && <p className="usererr">Morate unijeti opis tretmana!</p>}
               </div>
 
