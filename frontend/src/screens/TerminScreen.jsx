@@ -36,7 +36,7 @@ const TerminScreen = () => {
         data.push({
             sat: 22,
             minuta: 0,
-            tretman: '61e05fc80709c252560b8e05'
+            tretman: '621d3490539d77816329b4a4'
         });
         return data;
     }
