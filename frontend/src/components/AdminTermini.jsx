@@ -5,7 +5,7 @@ import axios from 'axios';
 const AdminKalendar = ({termin, diskriminator, izbrisiZahtjev, prihvatiZahtjev, otvoriModal}) => {
   const [tretman, setTretman] = useState();
   useEffect(async() => {
-    const result = await axios(`https://amsfs.herokuapp.com/api/tretman/${termin.tretman}`);
+    const result = await axios(`https://amsfs.vercel.app/api/tretman/${termin.tretman}`);
     setTretman(result.data);
   }, []);
 

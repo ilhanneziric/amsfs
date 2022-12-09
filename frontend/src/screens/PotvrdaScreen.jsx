@@ -33,21 +33,21 @@ const PotvrdaScreen = () => {
             tretman: params.tretmanid
         };
         const  posalji = async (obj) => {
-            const response = await axios.post('https://amsfs.herokuapp.com/api/termin/', obj);
+            const response = await axios.post('https://amsfs.vercel.app/api/termin/', obj);
             socket.emit('posalji_zahtjev');
         }
         posalji(noviTermin);
     }
 
     useEffect(async() => {
-        const result = await axios(`https://amsfs.herokuapp.com/api/dan/${params.danid}`);
+        const result = await axios(`https://amsfs.vercel.app/api/dan/${params.danid}`);
         setDan(result.data);
-        const resultt = await axios(`https://amsfs.herokuapp.com/api/tretman/${params.tretmanid}`);
+        const resultt = await axios(`https://amsfs.vercel.app/api/tretman/${params.tretmanid}`);
         setTretman(resultt.data);
     }, [])
 
     useEffect(async() => {
-        const result = await axios(`https://amsfs.herokuapp.com/api/mjesec/${dan.mjesec}`);
+        const result = await axios(`https://amsfs.vercel.app/api/mjesec/${dan.mjesec}`);
         setMjesec(result.data);
     }, [dan]);
 

@@ -19,7 +19,7 @@ const TretmanScreen = () => {
     }, [])
 
     useEffect(async () => {
-        const result = await axios(`https://amsfs.herokuapp.com/api/tretman/kategorija/${params.kategorija}`);
+        const result = await axios(`https://amsfs.vercel.app/api/tretman/kategorija/${params.kategorija}`);
         setTretmani(result.data);
     }, []);
 

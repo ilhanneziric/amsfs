@@ -16,15 +16,15 @@ const AdminTretmaniScreen = () => {
   const handleClose = () => setShow(false);
 
   useEffect(async () => {
-    const result = await axios(`https://amsfs.herokuapp.com/api/tretman`);
+    const result = await axios(`https://amsfs.vercel.app/api/tretman`);
     setTretmani(result.data);
   }, []);
 
   const onSubmit = async(data) => {
     data.cijena = Number(data.cijena);
     data.trajanje = Number(data.trajanje);
-    const response = await axios.post('https://amsfs.herokuapp.com/api/tretman/', data);
-    const result = await axios(`https://amsfs.herokuapp.com/api/tretman`);
+    const response = await axios.post('https://amsfs.vercel.app/api/tretman/', data);
+    const result = await axios(`https://amsfs.vercel.app/api/tretman`);
     setTretmani(result.data);
     
   };
@@ -36,8 +36,8 @@ const AdminTretmaniScreen = () => {
 
   const izbrisi = async() => {
     setShow(false);
-    const result = await axios.delete(`https://amsfs.herokuapp.com/api/tretman/${odabraniTretman.current}`);
-    const resultt = await axios(`https://amsfs.herokuapp.com/api/tretman`);
+    const result = await axios.delete(`https://amsfs.vercel.app/api/tretman/${odabraniTretman.current}`);
+    const resultt = await axios(`https://amsfs.vercel.app/api/tretman`);
     setTretmani(resultt.data);
   }
 

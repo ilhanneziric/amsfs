@@ -17,7 +17,7 @@ const UnosScreen = () => {
     const [tretman,setTretman] = useState({});
 
     useEffect(async () => {
-        const resultt = await axios(`https://amsfs.herokuapp.com/api/tretman/${params.tretmanid}`);
+        const resultt = await axios(`https://amsfs.vercel.app/api/tretman/${params.tretmanid}`);
         setTretman(resultt.data);
     }, []);
 

@@ -45,7 +45,7 @@ const AdminScreen = () => {
     const adminDan = useSelector(state => state.adminDan);
 
     useEffect(async () => {
-        const result = await axios(`https://amsfs.herokuapp.com/api/termin/dan/prihvaceni/${adminDan}`);
+        const result = await axios(`https://amsfs.vercel.app/api/termin/dan/prihvaceni/${adminDan}`);
         setTermini(result.data);
     }, [adminDan]);
 
@@ -58,7 +58,7 @@ const AdminScreen = () => {
     }, [adminDan]);
 
     useEffect(async () => {
-        const result = await axios(`https://amsfs.herokuapp.com/api/mjesec/${datumce.broj}/${datumce.godina}`);
+        const result = await axios(`https://amsfs.vercel.app/api/mjesec/${datumce.broj}/${datumce.godina}`);
         setMjesec(result.data);
         setujDane(result.data._id);
         setNeprihvacene();
@@ -70,14 +70,14 @@ const AdminScreen = () => {
     }, []);
 
     const setujDane = async(id) => {
-        const rezultat = await axios(`https://amsfs.herokuapp.com/api/dan/mjesec/${id}`);
+        const rezultat = await axios(`https://amsfs.vercel.app/api/dan/mjesec/${id}`);
         setDani(rezultat.data);
     }
 
     useEffect(async () => {
-        const result = await axios(`https://amsfs.herokuapp.com/api/mjesec/${mjesec.broj === 12 ? Number(mjesec.broj - 11) : Number(mjesec.broj + 1)}/${mjesec.broj === 12 ? Number(mjesec.godina + 1) : Number(mjesec.godina)}`);
+        const result = await axios(`https://amsfs.vercel.app/api/mjesec/${mjesec.broj === 12 ? Number(mjesec.broj - 11) : Number(mjesec.broj + 1)}/${mjesec.broj === 12 ? Number(mjesec.godina + 1) : Number(mjesec.godina)}`);
         setDesno(result.data);
-        const rezultat = await axios(`https://amsfs.herokuapp.com/api/mjesec/${mjesec.broj === 1 ? Number(mjesec.broj + 11 ) : Number(mjesec.broj - 1)}/${mjesec.broj === 1 ? Number(mjesec.godina - 1) : Number(mjesec.godina)}`);
+        const rezultat = await axios(`https://amsfs.vercel.app/api/mjesec/${mjesec.broj === 1 ? Number(mjesec.broj + 11 ) : Number(mjesec.broj - 1)}/${mjesec.broj === 1 ? Number(mjesec.godina - 1) : Number(mjesec.godina)}`);
         setLijevo(rezultat.data);
     }, [mjesec]);
 
@@ -110,7 +110,7 @@ const AdminScreen = () => {
                         disabled: (dani[i].disabled === 'true'? 'false': 'true'),
                         mjesec: dani[i].mjesec
                     };
-                    const result = await axios.patch(`https://amsfs.herokuapp.com/api/dan/${dani[i]._id}`,obj);
+                    const result = await axios.patch(`https://amsfs.vercel.app/api/dan/${dani[i]._id}`,obj);
                     await setujDane(dani[i].mjesec);
                     setCekiran(!cekiran);
                 }
@@ -120,26 +120,26 @@ const AdminScreen = () => {
     }
 
     const setNeprihvacene = async() => {
-        const result = await axios(`https://amsfs.herokuapp.com/api/termin/dan/prihvaceni/${adminDan}`);
+        const result = await axios(`https://amsfs.vercel.app/api/termin/dan/prihvaceni/${adminDan}`);
         setTermini(result.data);
-        const resultt = await axios(`https://amsfs.herokuapp.com/api/termin/neprihvaceni`);
+        const resultt = await axios(`https://amsfs.vercel.app/api/termin/neprihvaceni`);
         setNTermini(resultt.data);
     }
 
     const izbrisiZahtjev = async(id) => {
-        const result = await axios.delete(`https://amsfs.herokuapp.com/api/termin/${id}`);
+        const result = await axios.delete(`https://amsfs.vercel.app/api/termin/${id}`);
         await setNeprihvacene();
     }
     
     const prihvatiZahtjev = async(termince) => {
         termince.isPrihvacen = 'true';
-        const result = await axios.patch(`https://amsfs.herokuapp.com/api/termin/${termince._id}`, termince);
+        const result = await axios.patch(`https://amsfs.vercel.app/api/termin/${termince._id}`, termince);
         await setNeprihvacene();
     }
 
     const otvoriModal = async(terminn) => {
         setOdabraniTermin(terminn);
-        const result = await axios(`https://amsfs.herokuapp.com/api/tretman/${terminn.tretman}`);
+        const result = await axios(`https://amsfs.vercel.app/api/tretman/${terminn.tretman}`);
         setOdabraniTretman(result.data);
         setShow(true);
     }

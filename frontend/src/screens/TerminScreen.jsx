@@ -25,10 +25,10 @@ const TerminScreen = () => {
     const dispatch = useDispatch();
 
     useEffect(async () => {
-        const result = await axios(`https://amsfs.herokuapp.com/api/termin/dan/${params.danid}`);
+        const result = await axios(`https://amsfs.vercel.app/api/termin/dan/${params.danid}`);
         const finaly = setujZadnjiTermin(await result.data);
         setZTermini(finaly);
-        const resultt = await axios(`https://amsfs.herokuapp.com/api/tretman/${params.tretmanid}`);
+        const resultt = await axios(`https://amsfs.vercel.app/api/tretman/${params.tretmanid}`);
         setTretman(resultt.data);
     }, []);
 
@@ -44,7 +44,7 @@ const TerminScreen = () => {
     useEffect(async() => {
         for (let i = 0; i < ztermini.length; i++) {
             
-            const resultt = await axios(`https://amsfs.herokuapp.com/api/tretman/${ztermini[i].tretman}`);
+            const resultt = await axios(`https://amsfs.vercel.app/api/tretman/${ztermini[i].tretman}`);
             tretmani.push(resultt.data);
         }
         setSveTermine(tretman.trajanje/10);

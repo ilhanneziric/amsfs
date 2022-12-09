@@ -16,7 +16,7 @@ const Kalendar = ( {prosli, sadasnji, buduci}) => {
 
     useEffect(async () => {
         if(sadasnji.length > 0){
-            const result = await axios(`https://amsfs.herokuapp.com/api/mjesec/${sadasnji[0].mjesec}`);
+            const result = await axios(`https://amsfs.vercel.app/api/mjesec/${sadasnji[0].mjesec}`);
             setMjesec(result.data);
         }
     }, [sadasnji]);
